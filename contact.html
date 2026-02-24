@@ -77,16 +77,11 @@
     .page-title h1{margin:0;font-size:40px;letter-spacing:.04em;text-transform:uppercase;color:#1b1b1b}
     .page-rule{width:220px;height:2px;background:var(--gold);margin:16px auto 34px}
 
-    .alert{max-width:980px;margin:0 auto 18px;padding:12px 14px;border:1px solid rgba(155,116,78,.35);background:rgba(155,116,78,.10);border-radius:10px}
-    .alert b{color:#6f4d33}
-    .alert a{text-decoration:underline}
-
-    .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start}
-    .leftcard{display:grid;gap:18px}
-    .heroimg{border-radius:6px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12);background:#ddd}
+    .contact-wrap{max-width:700px;margin:0 auto;text-align:center}
+    .heroimg{border-radius:6px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12);background:#ddd;margin-bottom:32px}
     .heroimg img{width:100%;height:auto;display:block}
 
-    .info{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding-top:4px;text-align:center}
+    .info{display:flex;flex-direction:column;align-items:center;gap:22px;margin-bottom:36px}
     .infoItem{display:flex;flex-direction:column;align-items:center;gap:10px}
     .bigico{width:60px;height:60px;border-radius:999px;display:grid;place-items:center;background:rgba(155,116,78,.12);border:2px solid rgba(155,116,78,.20)}
     .bigico svg{width:24px;height:24px;fill:var(--gold)}
@@ -94,17 +89,18 @@
     .infotxt a{color:inherit}
     .infotxt a:hover{text-decoration:underline}
 
-    .formcard{border-left:1px solid rgba(0,0,0,.10);padding-left:28px}
-    form{display:grid;gap:14px}
-    .field{display:grid;gap:8px}
-    input,textarea{width:100%;border:1px solid rgba(0,0,0,.15);border-radius:4px;padding:14px 14px;font-family:inherit;font-size:15px;outline:none;background:#fff}
-    input::placeholder,textarea::placeholder{color:rgba(0,0,0,.38)}
-    input:focus,textarea:focus{border-color:rgba(155,116,78,.55);box-shadow:0 0 0 3px rgba(155,116,78,.12)}
-    textarea{min-height:220px;resize:vertical}
-    .btnrow{padding-top:6px}
-    .btn{display:inline-block;background:var(--gold-2);color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:0;cursor:pointer}
-    .btn:hover{filter:brightness(.98)}
-    .hp{position:absolute;left:-9999px;opacity:0}
+    .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold-2);color:#fff;padding:16px 28px;border-radius:4px;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;border:0;cursor:pointer;transition:filter .15s}
+    .cta:hover{filter:brightness(.92)}
+    .cta svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+
+    .mail-alt{margin-bottom:10px}
+    .mail-alt-label{font-size:14px;color:var(--muted);margin-bottom:12px}
+    .mail-alt-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .mail-alt-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:4px;font-weight:600;font-size:13px;letter-spacing:.02em;border:1px solid rgba(155,116,78,.30);color:var(--gold-2);background:rgba(155,116,78,.06);transition:background .15s,border-color .15s}
+    .mail-alt-btn:hover{background:rgba(155,116,78,.14);border-color:rgba(155,116,78,.50)}
+
+    .contact-hint{font-size:13px;color:var(--muted);margin-top:8px;margin-bottom:0}
 
     /* Footer (identique index) */
     footer{background:var(--bg-dark);color:#eee;margin-top:34px}
@@ -130,8 +126,6 @@
 
     /* Responsive */
     @media (max-width:980px){
-      .contact-grid{grid-template-columns:1fr;gap:22px}
-      .formcard{border-left:0;padding-left:0}
       .footer-inner{grid-template-columns:1fr;gap:26px}
       .topbar .msg{max-width:72vw}
       .page-title h1{font-size:32px}
@@ -145,6 +139,10 @@
       .brandmark{width:120px}
       .brand{min-width:220px}
       .infotxt{font-size:22px}
+      .cta-row{flex-direction:column;align-items:stretch}
+      .cta{justify-content:center}
+      .mail-alt-row{flex-direction:column;align-items:stretch}
+      .mail-alt-btn{justify-content:center}
     }
   </style>
 </head>
@@ -201,61 +199,58 @@
       </div>
       <div class="page-rule" aria-hidden="true"></div>
 
-      <div class="alert" id="okAlert" style="display:none">
-        <b>Merci !</b> Votre message a bien été envoyé. Si besoin : <a href="mailto:adesign-france@adesign-france.fr">adesign-france@adesign-france.fr</a>.
-      </div>
+      <div class="contact-wrap">
+        <div class="heroimg">
+          <img src="assets/visuel-contact.jpg" alt="ADesign - Aménagement intérieur" loading="lazy">
+        </div>
 
-      <div class="alert" id="koAlert" style="display:none">
-        <b>Oups…</b> Votre message n’a pas pu être envoyé. Vérifiez les champs obligatoires ou réessayez. Sinon : <a href="mailto:adesign-france@adesign-france.fr">adesign-france@adesign-france.fr</a>.
-      </div>
-
-      <section class="contact-grid" aria-label="Formulaire de contact">
-        <div class="leftcard">
-          <div class="heroimg">
-            <img src="assets/visuel-contact.jpg" alt="ADesign - Aménagement intérieur" loading="lazy">
+        <!-- Coordonnées -->
+        <div class="info" aria-label="Coordonnées">
+          <div class="infoItem">
+            <div class="bigico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.7 22 2 13.3 2 2c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
+            </div>
+            <div class="infotxt"><a href="tel:+33760456286">07 60 45 62 86</a></div>
           </div>
 
-          <div class="info" aria-label="Coordonnées">
-            <div class="infoItem">
-              <div class="bigico" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-              </div>
-              <div class="infotxt"><a href="mailto:adesign-france@adesign-france.fr">adesign-france@adesign-france.fr</a></div>
+          <div class="infoItem">
+            <div class="bigico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
             </div>
+            <div class="infotxt"><a href="mailto:adesign-france@adesign-france.fr">adesign-france@adesign-france.fr</a></div>
+          </div>
 
-            <div class="infoItem">
-              <div class="bigico" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.7 22 2 13.3 2 2c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
-              </div>
-              <div class="infotxt"><a href="tel:+33760456286">07 60 45 62 86</a></div>
+          <div class="infoItem">
+            <div class="bigico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
             </div>
-
-            <div class="infoItem">
-              <div class="bigico" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-              </div>
-              <div class="infotxt"><span>26 Cr Gambetta, 65000 Tarbes</span></div>
-            </div>
+            <div class="infotxt"><span>26 Cr Gambetta, 65000 Tarbes</span></div>
           </div>
         </div>
 
-        <div class="formcard">
-          <form action="send.php" method="post" accept-charset="UTF-8" novalidate>
-            <div class="hp">
-              <label>Ne pas remplir <input type="text" name="website" autocomplete="off"></label>
-            </div>
-
-            <div class="field"><input type="text" name="nom" placeholder="Vos nom et prénom" required></div>
-            <div class="field"><input type="tel" name="telephone" placeholder="N° de téléphone"></div>
-            <div class="field"><input type="email" name="email" placeholder="Adresse de messagerie" required></div>
-            <div class="field"><input type="text" name="lieu" placeholder="Lieu du chantier"></div>
-            <div class="field"><input type="text" name="objet" placeholder="Objet" required></div>
-            <div class="field"><textarea name="message" placeholder="Votre message" required></textarea></div>
-
-            <div class="btnrow"><button class="btn" type="submit">ENVOYER</button></div>
-          </form>
+        <!-- CTA principaux -->
+        <div class="cta-row">
+          <a class="cta" href="tel:+33760456286">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.7 22 2 13.3 2 2c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
+            Appeler
+          </a>
+          <a class="cta" href="mailto:adesign-france@adesign-france.fr?subject=Demande%20de%20renseignement">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+            Envoyer un e-mail
+          </a>
         </div>
-      </section>
+
+        <!-- Messageries alternatives -->
+        <div class="mail-alt">
+          <div class="mail-alt-label">Choisir votre messagerie</div>
+          <div class="mail-alt-row">
+            <a class="mail-alt-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=adesign-france@adesign-france.fr&su=Demande%20de%20renseignement" target="_blank" rel="noopener noreferrer">Gmail</a>
+            <a class="mail-alt-btn" href="https://outlook.live.com/mail/0/deeplink/compose?to=adesign-france@adesign-france.fr&subject=Demande%20de%20renseignement" target="_blank" rel="noopener noreferrer">Outlook</a>
+            <a class="mail-alt-btn" href="https://compose.mail.yahoo.com/?to=adesign-france@adesign-france.fr&subject=Demande%20de%20renseignement" target="_blank" rel="noopener noreferrer">Yahoo</a>
+          </div>
+          <p class="contact-hint">Cliquez sur une option ci-dessus pour nous écrire (un mail va s'ouvrir).</p>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -335,13 +330,6 @@
       btn.addEventListener('click',()=>{wrap.classList.toggle('navopen');});
       document.addEventListener('click',(e)=>{if(!wrap.contains(e.target)) wrap.classList.remove('navopen');});
       document.addEventListener('keydown',(e)=>{if(e.key==='Escape') wrap.classList.remove('navopen');});
-    })();
-
-    // Alerts (?sent=1 / ?sent=0)
-    (function(){
-      const p=new URLSearchParams(location.search);
-      if(p.get('sent')==='1'){const a=document.getElementById('okAlert');if(a) a.style.display='block';}
-      if(p.get('sent')==='0'){const a=document.getElementById('koAlert');if(a) a.style.display='block';}
     })();
 
     // Scroll top
