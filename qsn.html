@@ -1,0 +1,456 @@
+<!-- qsn.html — Page “Qui sommes nous” (version vitrine statique, pixel-perfect desktop prioritaire) -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Qui sommes nous — ADesign</title>
+  <meta name="description" content="ADesign — 30 ans d’expérience au service de vos projets." />
+
+  <!-- Polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#0b0b0b;
+      --header-black:#0a0a0a;
+      --gold:#b88a5b;
+      --gold-2:#9f7448;
+      --text:#111;
+      --muted:#666;
+      --btn-b:#dcdcdc;
+      --btn-t:#7f7f7f;
+      --container:1500px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--container);margin:0 auto;padding:0 30px}
+
+    /* =========================
+       HEADER (identique)
+    ========================== */
+    .topbar{background:var(--header-black);color:var(--gold);text-align:center;font-size:12px;letter-spacing:.2px;padding:10px 12px}
+    .header{background:var(--black)}
+    .header-inner{max-width:var(--container);margin:0 auto;padding:18px 30px 8px}
+    .header-row{display:grid;grid-template-columns:260px 1fr 140px;align-items:center;gap:24px}
+
+    .brand{display:flex;flex-direction:column;gap:2px}
+    .brand a{display:inline-block}
+    .brand img{width:200px;height:auto}
+    .brand small{color:var(--gold-2);opacity:.85;font-size:12px;margin-left:2px}
+
+    .search{display:flex;justify-content:center}
+    .search-box{width:min(720px,100%);display:flex;border-radius:2px;overflow:hidden}
+    .search-box input{
+      width:100%;height:38px;border:1px solid #cfcfcf;border-right:none;outline:none;
+      background:#f3f3f3;padding:0 14px;font-size:12px;color:#666;
+    }
+    .search-box button{
+      width:42px;height:38px;border:1px solid var(--gold);background:var(--gold);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+    }
+    .search-box svg{width:16px;height:16px;fill:#fff}
+
+    .header-icons{display:flex;justify-content:flex-end;gap:26px;padding-right:4px}
+    .icon-btn{width:30px;height:30px;display:grid;place-items:center;opacity:.95}
+    .icon-btn svg{width:24px;height:24px;fill:#fff}
+
+    .nav{max-width:var(--container);margin:0 auto;padding:8px 30px 14px}
+    .nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:26px}
+    .nav a{color:#fff;font-size:16px;font-weight:500;letter-spacing:.2px;padding:6px 0;display:inline-block}
+    .nav a:hover{opacity:.85}
+
+    /* =========================
+       SECTION TITLES
+    ========================== */
+    .section-title{padding:120px 0 0;text-align:center}
+    .section-title h1{
+      margin:0;
+      font-size:34px;
+      font-weight:500;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      color:#111;
+    }
+    .underline{width:520px;max-width:58vw;height:3px;background:var(--gold);margin:18px auto 0;border-radius:2px}
+
+    /* =========================
+       Section 1 (image + 2 blocs)
+    ========================== */
+    .s1{padding:84px 0 0}
+    .s1-grid{
+      display:grid;
+      grid-template-columns:560px 1fr;
+      gap:120px;
+      align-items:start;
+    }
+    .s1-img{
+      width:560px;
+      height:420px;
+      background:#e9e9e9 center/cover no-repeat;
+      margin-left:110px; /* pour retrouver le décalage visuel des captures */
+    }
+
+    .feat-wrap{padding-top:10px}
+    .feat{display:grid;grid-template-columns:78px 1fr;gap:26px;align-items:center;margin-bottom:86px}
+    .icon-square{
+      width:66px;height:66px;border:2px solid var(--gold);
+      display:grid;place-items:center;
+    }
+    .icon-square svg{width:30px;height:30px;fill:var(--gold)}
+    .feat h3{
+      margin:0 0 10px;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:.2px;
+      color:#2b2b2b;
+      line-height:1.05;
+      text-transform:uppercase;
+    }
+    .feat p{
+      margin:0;
+      max-width:420px;
+      color:#6a6a6a;
+      font-size:14px;
+      line-height:1.65;
+      text-align:center; /* comme la capture (texte centré sous le titre) */
+    }
+    .feat .text{display:flex;flex-direction:column;align-items:center}
+
+    .mid-note{
+      margin-top:10px;
+      text-align:center;
+    }
+    .mid-note h4{
+      margin:0 0 14px;
+      font-size:26px;
+      font-weight:700;
+      color:#2b2b2b;
+      line-height:1.15;
+    }
+    .mid-note p{
+      margin:0 auto 18px;
+      max-width:430px;
+      color:#6a6a6a;
+      font-size:14px;
+      line-height:1.75;
+      text-align:center;
+    }
+    .mid-note .small{
+      margin-top:10px;
+      color:#6a6a6a;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* =========================
+       BIG BANNER (quote)
+    ========================== */
+    .banner{padding:120px 0 0}
+    .banner-box{
+      width:1120px;
+      max-width:calc(100% - 120px);
+      height:300px;
+      margin:0 auto;
+      background:
+        linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+        url("assets/qsn-banner.jpg") center/cover no-repeat;
+      position:relative;
+      overflow:hidden;
+    }
+    .banner-inner{
+      position:absolute;inset:0;
+      padding:54px 70px;
+      display:flex;flex-direction:column;justify-content:flex-start;
+      color:#fff;
+      text-align:center;
+    }
+    .banner-inner h2{
+      margin:0 0 22px;
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+    }
+    .banner-inner p{
+      margin:0 auto 18px;
+      max-width:980px;
+      font-size:13px;
+      line-height:1.9;
+      color:rgba(255,255,255,.92);
+    }
+
+    /* =========================
+       Section 2 (Un aboutissement)
+    ========================== */
+    .s2-title{padding:90px 0 0;text-align:center}
+    .s2-title h2{margin:0;font-size:36px;font-weight:700;color:#2b2b2b}
+    .s2-title .underline{width:180px;height:4px;margin-top:16px}
+
+    .s2{padding:56px 0 0}
+    .s2-grid{
+      display:grid;
+      grid-template-columns:640px 1fr;
+      gap:110px;
+      align-items:center;
+    }
+    .s2-img{
+      width:640px;
+      height:340px;
+      background:#e9e9e9 center/cover no-repeat;
+      margin-left:110px;
+    }
+    .s2-text h3{
+      margin:0 0 22px;
+      font-size:24px;
+      font-weight:700;
+      color:#2b2b2b;
+    }
+    .s2-text p{
+      margin:0;
+      max-width:560px;
+      color:#6a6a6a;
+      font-size:14px;
+      line-height:2.0;
+      text-align:center;
+    }
+    .s2-text{display:flex;flex-direction:column;align-items:center}
+
+    /* =========================
+       Bottom “Pour plus de renseignement” (sans bouton demandé)
+    ========================== */
+    .more{padding:140px 0 140px}
+    .more h4{
+      margin:0;
+      font-size:26px;
+      font-weight:800;
+      color:#2b2b2b;
+    }
+
+    /* =========================
+       Back to top (floating)
+    ========================== */
+    .to-top{
+      position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:999px;background:#111;
+      display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);
+      transition:opacity .18s ease,transform .18s ease;z-index:50;border:0;
+    }
+    .to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .to-top svg{width:18px;height:18px;fill:#fff}
+
+    /* =========================
+       Responsive (propre)
+    ========================== */
+    @media (max-width:1400px){
+      :root{--container:1200px}
+      .s1-img,.s2-img{margin-left:30px}
+      .s1-grid{gap:70px}
+      .s2-grid{gap:70px}
+    }
+    @media (max-width:1100px){
+      .header-row{grid-template-columns:220px 1fr 120px}
+      .nav ul{flex-wrap:wrap;row-gap:10px}
+      .section-title{padding-top:70px}
+      .s1-grid,.s2-grid{grid-template-columns:1fr;gap:40px}
+      .s1-img,.s2-img{margin:0 auto;width:min(720px,100%);height:360px}
+      .feat{grid-template-columns:1fr;gap:14px;justify-items:center}
+      .feat .text{padding:0 16px}
+      .banner-box{max-width:calc(100% - 40px)}
+    }
+    @media (max-width:760px){
+      .container{padding:0 16px}
+      .header-inner{padding:14px 16px 8px}
+      .nav{padding:6px 16px 12px}
+      .header-row{grid-template-columns:1fr;gap:12px}
+      .header-icons{justify-content:center}
+      .brand{align-items:center}
+      .section-title h1{font-size:24px}
+      .banner-inner{padding:36px 18px}
+      .banner-inner h2{font-size:16px}
+      .banner-inner p{font-size:12px;line-height:1.8}
+      .s2-title h2{font-size:28px}
+      .s2-text p{text-align:left}
+      .more{padding:90px 0}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP BAR -->
+  <div class="topbar">Livraison Offerte à partir de 100€ d'achat</div>
+
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <div class="header-row">
+
+        <div class="brand">
+          <a href="index.html" aria-label="Aller à l'accueil ADesign">
+            <img src="assets/logo-adesign.png" alt="ADesign — Architecture d’intérieur">
+          </a>
+          <small>Architecture d’intérieur</small>
+        </div>
+
+        <div class="search" aria-label="Recherche">
+          <div class="search-box" role="search">
+            <input type="search" placeholder="Saisissez et appuyez sur « Entrée »..." aria-label="Rechercher">
+            <button type="button" aria-label="Rechercher (non fonctionnel)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="header-icons" aria-label="Panier et compte (visuels)">
+          <a class="icon-btn" href="#" aria-label="Panier (vitrine)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7V6a5 5 0 0110 0v1h3a1 1 0 011 1l-1 13a2 2 0 01-2 2H6a2 2 0 01-2-2L3 8a1 1 0 011-1h3zm2 0h6V6a3 3 0 00-6 0v1z"/></svg>
+          </a>
+          <a class="icon-btn" href="#" aria-label="Compte (vitrine)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <nav class="nav" role="navigation" aria-label="Menu principal">
+      <ul>
+        <li><a href="boutique.html">ACCUEIL</a></li>
+        <li><a href="luminaire.html">LUMINAIRES</a></li>
+        <li><a href="tapis.html">TAPIS</a></li>
+        <li><a href="miroir.html">MIROIR</a></li>
+        <li><a href="qsn.html">QUI SOMMES NOUS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="index.html">SHOWROOM</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =========================
+       TITLE 1
+  ========================== -->
+  <section class="section-title" aria-label="Titre principal">
+    <div class="container">
+      <h1>30 ANS D'EXPÉRIENCE AU SERVICE DE VOS PROJETS</h1>
+      <div class="underline" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SECTION 1 (image + textes/valeurs)
+  ========================== -->
+  <section class="s1" aria-label="Présentation">
+    <div class="container">
+      <div class="s1-grid">
+
+        <div class="s1-img" style="background-image:url('assets/qsn-salon.png')" role="img" aria-label="Image d'illustration showroom"></div>
+
+        <div class="feat-wrap">
+
+          <div class="feat">
+            <div class="icon-square" aria-hidden="true">
+              <!-- cube -->
+              <svg viewBox="0 0 24 24"><path d="M12 2l9 5-9 5-9-5 9-5zm-7 7l7 4 7-4v8l-7 4-7-4V9z"/></svg>
+            </div>
+            <div class="text">
+              <h3>MATÉRIAUX HAUT<br>DE GAMME</h3>
+              <p>Nous apportons le plus grand soin à choisir des matériaux d’exception tout en valorisant la fonctionnalité de votre intérieur.</p>
+            </div>
+          </div>
+
+          <div class="mid-note">
+            <h4>Leurs fabrications naît<br>de vos envies</h4>
+            <p>Nos gammes de produits vous sont propres. Tout produit fini peut être personnalisé pour se rapprocher au mieux de vôtre idéal.</p>
+            <div class="small">Pour cela, veuillez nous contacter.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       BIG BANNER
+  ========================== -->
+  <section class="banner" aria-label="Bandeau citation">
+    <div class="banner-box">
+      <div class="banner-inner">
+        <h2>"NOUS VOUS OFFRONS UNE VARIÉTÉ DE SOLUTIONS QUI VOUS RESSEMBLENT"</h2>
+
+        <p>
+          Fort de 30 ans d’expérience dans l’ameublement, ADesign se distingue par sa vision futuriste du design, devenue une véritable passion.
+          Spécialisé dans la conception d’espaces de vie résidentiels et professionnels, ADesign allie minimalisme et esthétique à un savoir-faire pointu,
+          créant ainsi des projets sur mesure, innovants et durables.
+        </p>
+
+        <p>
+          Sa maîtrise du métier est un art, permettant de trouver des solutions uniques pour chacun grâce à des compétences multidisciplinaires et une vision novatrice.
+          La personnalisation et l’adaptabilité des projets sont ses points forts.
+        </p>
+
+        <p>
+          La priorité d’ADesign est de se concentrer sur la qualité des détails, du design et de la durabilité des projets, garantissant ainsi des résultats intemporels.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SECTION 2 TITLE
+  ========================== -->
+  <section class="s2-title" aria-label="Un aboutissement">
+    <div class="container">
+      <h2>Un aboutissement</h2>
+      <div class="underline" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SECTION 2 (image + texte)
+  ========================== -->
+  <section class="s2" aria-label="Aboutissement">
+    <div class="container">
+      <div class="s2-grid">
+
+        <div class="s2-img" style="background-image:url('assets/qsn-croquis.png')" role="img" aria-label="Image d'illustration conception"></div>
+
+        <div class="s2-text">
+          <h3>Adesign est avant tout de l'agencement d'intérieur</h3>
+          <p>
+            Notre boutique en ligne représente l’aboutissement de 30 années d’expérience dans le domaine de l’agencement intérieur.
+            Nous avons investi tout notre savoir-faire et notre passion pour la décoration intérieure dans la création de cette plateforme.
+            Nous sommes fiers de vous proposer une sélection exclusive de produits haut de gamme, conçus pour répondre à vos besoins en matière d’ameublement et de décoration.
+            Nous sommes convaincus que notre offre unique saura vous satisfaire et que vous y trouverez les produits parfaits pour vos projets.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to top -->
+  <button class="to-top" id="toTop" type="button" aria-label="Revenir en haut">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7 1.41 1.41L11 8.83V20h2V8.83l4.59 4.58L19 12z"/></svg>
+  </button>
+
+  <script>
+    // Bouton "haut de page"
+    const toTop = document.getElementById('toTop');
+    const toggleTop = () => (window.scrollY > 450) ? toTop.classList.add('show') : toTop.classList.remove('show');
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+    // Recherche = visuelle (pas de backend)
+    document.querySelector('.search-box input')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>

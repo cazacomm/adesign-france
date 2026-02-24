@@ -1,0 +1,483 @@
+<!-- tapis.html — Page “Tapis” (version vitrine statique, pixel-perfect desktop prioritaire) -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tapis design — ADesign</title>
+  <meta name="description" content="Découvrez notre sélection de tapis design." />
+
+  <!-- Polices (proche du rendu des captures) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#0b0b0b;
+      --header-black:#0a0a0a;
+      --gold:#b88a5b;
+      --gold-2:#9f7448;
+      --text:#111;
+      --muted:#777;
+      --line:#e9e9e9;
+      --btn-b:#dcdcdc;
+      --btn-t:#7f7f7f;
+      --container:1500px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* =========================
+       HEADER (top + main)
+    ========================== */
+    .topbar{background:var(--header-black);color:var(--gold);text-align:center;font-size:12px;letter-spacing:.2px;padding:10px 12px}
+    .header{background:var(--black)}
+    .header-inner{max-width:var(--container);margin:0 auto;padding:18px 30px 8px;position:relative}
+    .header-row{display:grid;grid-template-columns:260px 1fr 140px;align-items:center;gap:24px}
+
+    /* Logo */
+    .brand{display:flex;flex-direction:column;gap:2px}
+    .brand a{display:inline-block}
+    .brand img{width:200px;height:auto}
+    .brand small{color:var(--gold-2);opacity:.85;font-size:12px;margin-left:2px}
+
+    /* Search */
+    .search{display:flex;justify-content:center}
+    .search-box{width:min(720px,100%);display:flex;border-radius:2px;overflow:hidden}
+    .search-box input{
+      width:100%;
+      height:38px;
+      border:1px solid #cfcfcf;
+      border-right:none;
+      outline:none;
+      background:#f3f3f3;
+      padding:0 14px;
+      font-size:12px;
+      color:#666;
+    }
+    .search-box button{
+      width:42px;height:38px;border:1px solid var(--gold);
+      background:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;
+    }
+    .search-box svg{width:16px;height:16px;fill:#fff}
+
+    /* Icons (panier / compte) */
+    .header-icons{display:flex;justify-content:flex-end;gap:26px;padding-right:4px}
+    .icon-btn{width:30px;height:30px;display:grid;place-items:center;opacity:.95}
+    .icon-btn svg{width:24px;height:24px;fill:#fff}
+
+    /* Menu */
+    .nav{max-width:var(--container);margin:0 auto;padding:8px 30px 14px}
+    .nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:26px}
+    .nav a{
+      color:#fff;
+      font-size:16px;
+      font-weight:500;
+      letter-spacing:.2px;
+      padding:6px 0;
+      display:inline-block;
+    }
+    .nav a:hover{opacity:.85}
+
+    /* =========================
+       BREADCRUMB + TITLE
+    ========================== */
+    .breadcrumb{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:18px 30px 0;
+      font-size:13px;
+      color:#666;
+    }
+    .breadcrumb span.sep{margin:0 6px;color:#bbb}
+    .breadcrumb a{color:#111}
+    .breadcrumb a:hover{text-decoration:underline}
+    .breadcrumb .current{color:var(--gold)}
+
+    .page-title{max-width:var(--container);margin:0 auto;padding:36px 30px 26px;text-align:center}
+    .page-title h1{margin:0;font-size:34px;font-weight:700;color:#111}
+    .page-title .underline{
+      width:520px;max-width:58vw;height:3px;background:var(--gold);
+      margin:16px auto 0;border-radius:2px;
+    }
+
+    /* =========================
+       PRODUCTS GRID
+    ========================== */
+    .wrap{max-width:var(--container);margin:0 auto;padding:6px 30px 90px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      column-gap:82px;
+      row-gap:86px;
+      align-items:start;
+    }
+
+    .product{text-align:center}
+    .thumb{
+      width:100%;
+      aspect-ratio:1/1;
+      background:#f4f4f4 center/cover no-repeat;
+      border:0;
+      box-shadow:none;
+    }
+    .name{
+      margin:16px 0 0;
+      font-size:13px;
+      font-weight:600;
+      color:#2b2b2b;
+    }
+    .price{
+      margin:18px 0 12px;
+      font-size:16px;
+      font-weight:500;
+      color:var(--gold);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:30px;
+      padding:0 18px;
+      border:2px solid var(--btn-b);
+      color:var(--btn-t);
+      background:#fff;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.2px;
+      border-radius:2px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{filter:brightness(.98)}
+    .btn:active{transform:translateY(1px)}
+    .btn[aria-disabled="true"]{cursor:default;opacity:.95}
+
+    /* =========================
+       Back to top (floating)
+    ========================== */
+    .to-top{
+      position:fixed;right:22px;bottom:22px;
+      width:44px;height:44px;border-radius:999px;
+      background:#111;display:grid;place-items:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);
+      transition:opacity .18s ease,transform .18s ease;
+      z-index:50;
+    }
+    .to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .to-top svg{width:18px;height:18px;fill:#fff}
+
+    /* =========================
+       Responsive (propre, sans débordement)
+    ========================== */
+    @media (max-width: 1400px){
+      :root{--container:1200px}
+      .grid{column-gap:60px;row-gap:70px}
+    }
+    @media (max-width: 1100px){
+      .header-row{grid-template-columns:220px 1fr 120px}
+      .nav ul{flex-wrap:wrap;row-gap:10px}
+      .grid{grid-template-columns:repeat(3,1fr);column-gap:40px}
+    }
+    @media (max-width: 760px){
+      .header-inner{padding:14px 16px 8px}
+      .nav{padding:6px 16px 12px}
+      .breadcrumb{padding:14px 16px 0}
+      .page-title{padding:26px 16px 18px}
+      .wrap{padding:6px 16px 80px}
+      .header-row{grid-template-columns:1fr;gap:12px}
+      .header-icons{justify-content:center}
+      .search{justify-content:center}
+      .brand{align-items:center}
+      .grid{grid-template-columns:repeat(2,1fr);column-gap:18px;row-gap:46px}
+      .page-title h1{font-size:28px}
+      .page-title .underline{height:3px}
+    }
+    @media (max-width: 420px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       TOP BAR
+  ========================== -->
+  <div class="topbar">Livraison Offerte à partir de 100€ d'achat</div>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="header" role="banner">
+    <div class="header-inner">
+
+      <div class="header-row">
+        <!-- Logo (clic -> index.html) -->
+        <div class="brand">
+          <a href="index.html" aria-label="Aller à l'accueil ADesign">
+            <img src="assets/logo-adesign.png" alt="ADesign — Architecture d’intérieur">
+          </a>
+          <small>Architecture d’intérieur</small>
+        </div>
+
+        <!-- Search (visuel) -->
+        <div class="search" aria-label="Recherche">
+          <div class="search-box" role="search">
+            <input type="search" placeholder="Saisissez et appuyez sur « Entrée »..." aria-label="Rechercher">
+            <button type="button" aria-label="Rechercher (non fonctionnel)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Icons (visuels) -->
+        <div class="header-icons" aria-label="Panier et compte (visuels)">
+          <a class="icon-btn" href="#" aria-label="Panier (vitrine)">
+            <!-- bag icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7V6a5 5 0 0110 0v1h3a1 1 0 011 1l-1 13a2 2 0 01-2 2H6a2 2 0 01-2-2L3 8a1 1 0 011-1h3zm2 0h6V6a3 3 0 00-6 0v1z"/></svg>
+          </a>
+          <a class="icon-btn" href="#" aria-label="Compte (vitrine)">
+            <!-- user icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu (liens demandés) -->
+    <nav class="nav" role="navigation" aria-label="Menu principal">
+      <ul>
+        <li><a href="boutique.html">ACCUEIL</a></li>
+        <li><a href="luminaire.html">LUMINAIRES</a></li>
+        <li><a href="tapis.html">TAPIS</a></li>
+        <li><a href="miroir.html">MIROIR</a></li>
+        <li><a href="qsn.html">QUI SOMMES NOUS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <!-- showroom -> index.html (comme demandé) -->
+        <li><a href="index.html">SHOWROOM</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="boutique.html">Accueil</a><span class="sep">»</span><span class="current">Tapis</span>
+  </div>
+
+  <!-- Title -->
+  <section class="page-title" aria-label="Titre de la page">
+    <h1>Tapis design</h1>
+    <div class="underline" aria-hidden="true"></div>
+  </section>
+
+  <!-- =========================
+       PRODUCTS
+  ========================== -->
+  <main class="wrap" role="main" aria-label="Liste des tapis">
+
+    <section class="grid" aria-label="Grille produits">
+
+      <!-- Row 1 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-piazza.png')" role="img" aria-label="Tapis Piazza"></div>
+        <div class="name">Piazza</div>
+        <div class="price">830,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-baya.png')" role="img" aria-label="Tapis Baya"></div>
+        <div class="name">Baya</div>
+        <div class="price">1523,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-liane.png')" role="img" aria-label="Tapis Liane"></div>
+        <div class="name">Liane</div>
+        <div class="price">1299,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-deep.png')" role="img" aria-label="Tapis Deep"></div>
+        <div class="name">Deep</div>
+        <div class="price">1832,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-clair-obscur.png')" role="img" aria-label="Tapis Clair obscur"></div>
+        <div class="name">Clair obscur</div>
+        <div class="price">1430,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <!-- Row 2 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-sonia.webp')" role="img" aria-label="Tapis Sonia"></div>
+        <div class="name">Sonia</div>
+        <div class="price">1556,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-aduma.webp')" role="img" aria-label="Tapis Aduma"></div>
+        <div class="name">Aduma</div>
+        <div class="price">1556,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-alliance.png')" role="img" aria-label="Tapis Alliance"></div>
+        <div class="name">Alliance</div>
+        <div class="price">1565,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-dotty.png')" role="img" aria-label="Tapis Dotty"></div>
+        <div class="name">Dotty</div>
+        <div class="price">1644,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-block.png')" role="img" aria-label="Tapis Block"></div>
+        <div class="name">Block</div>
+        <div class="price">1600,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <!-- Row 3 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-twiggy.png')" role="img" aria-label="Tapis Twiggy"></div>
+        <div class="name">Twiggy</div>
+        <div class="price">1080,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-toison.png')" role="img" aria-label="Tapis Toison"></div>
+        <div class="name">Toison</div>
+        <div class="price">1849,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-nature.png')" role="img" aria-label="Tapis Nature"></div>
+        <div class="name">Nature</div>
+        <div class="price">1190,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-modulation.png')" role="img" aria-label="Tapis Modulation"></div>
+        <div class="name">Modulation</div>
+        <div class="price">1684,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-mirage.png')" role="img" aria-label="Tapis Mirage"></div>
+        <div class="name">Mirage</div>
+        <div class="price">823,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <!-- Row 4 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-minotaure.png')" role="img" aria-label="Tapis Minotaure"></div>
+        <div class="name">Minotaure</div>
+        <div class="price">1836,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-fragment.png')" role="img" aria-label="Tapis Fragment"></div>
+        <div class="name">Fragment</div>
+        <div class="price">1721,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-fez.png')" role="img" aria-label="Tapis Fez"></div>
+        <div class="name">Fez</div>
+        <div class="price">1836,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-esprit.png')" role="img" aria-label="Tapis Esprit"></div>
+        <div class="name">Esprit</div>
+        <div class="price">1170,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-delice.png')" role="img" aria-label="Tapis Délice"></div>
+        <div class="name">Délice</div>
+        <div class="price">2638,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <!-- Row 5 (visible sur capture) -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-amalgame.png')" role="img" aria-label="Tapis Amalgame"></div>
+        <div class="name">Amalgame</div>
+        <div class="price">1640,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-adam.png')" role="img" aria-label="Tapis Adam"></div>
+        <div class="name">Adam</div>
+        <div class="price">1820,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/tapis-collage.png')" role="img" aria-label="Tapis Collage"></div>
+        <div class="name">Collage</div>
+        <div class="price">1925,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Choix des options</a>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Back to top (comme sur capture) -->
+  <button class="to-top" id="toTop" type="button" aria-label="Revenir en haut">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7 1.41 1.41L11 8.83V20h2V8.83l4.59 4.58L19 12z"/></svg>
+  </button>
+
+  <script>
+    // Bouton "haut de page"
+    const toTop = document.getElementById('toTop');
+    const toggleTop = () => {
+      if (window.scrollY > 450) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    };
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Recherche = visuelle (pas de backend). Entrée ne fait rien.
+    document.querySelector('.search-box input')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>

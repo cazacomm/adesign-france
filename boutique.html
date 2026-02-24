@@ -1,0 +1,718 @@
+<!-- =========================================================
+     FICHIER UNIQUE : boutique.html
+     Objectif : reproduction pixel-perfect (desktop) d’après captures
+     Version vitrine statique (aucun e-commerce fonctionnel)
+========================================================== -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADesign — Accueil</title>
+  <meta name="description" content="Découvrez nos luminaires haut de gamme, miroirs et tapis — ADesign." />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Fonts (proche rendu captures) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --black:#0a0a0a;
+      --text:#111;
+      --muted:#666;
+      --accent:#9b7350;           /* brun principal (boutons/traits) */
+      --accent-2:#a6794a;         /* brun “doré” (petits textes) */
+      --border:#2a2a2a;
+      --soft:#f3f3f3;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.15);
+      --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--container);margin:0 auto;padding:0 18px}
+
+    /* =========================
+       TOP BAR + HEADER
+    ========================= */
+    .topbar{background:var(--black);color:var(--accent-2);text-align:center;font-size:14px;letter-spacing:.2px;padding:8px 10px}
+    .header{background:var(--black);color:#fff}
+    .header-inner{display:grid;grid-template-columns:240px 1fr 170px;gap:20px;align-items:center;padding:22px 0 8px}
+    .brand{display:flex;align-items:flex-start;gap:12px}
+    .brand a{display:inline-block}
+    .brand-logo{width:160px;height:auto}
+    .brand-sub{margin-top:6px;color:var(--accent-2);font-size:14px;line-height:1.05}
+
+    .search-wrap{display:flex;align-items:center;justify-content:center}
+    .search{width:100%;max-width:770px;display:flex;align-items:stretch;border-radius:2px;overflow:hidden}
+    .search input{
+      width:100%;
+      height:42px;
+      border:0;
+      outline:0;
+      padding:0 14px;
+      font-size:14px;
+      color:#333;
+      background:#f1f1f1;
+    }
+    .search button{
+      width:56px;
+      border:0;
+      background:var(--accent);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .search svg{width:18px;height:18px;fill:#fff}
+
+    .head-icons{display:flex;align-items:center;justify-content:flex-end;gap:26px}
+    .ico-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:999px}
+    .ico-btn svg{width:26px;height:26px;fill:#fff}
+
+    .nav{border-top:1px solid rgba(255,255,255,.06)}
+    .nav ul{list-style:none;margin:0;padding:12px 0 16px;display:flex;gap:26px;justify-content:center;align-items:center}
+    .nav a{font-weight:500;letter-spacing:.6px;text-transform:uppercase;font-size:18px;color:#fff}
+    .nav a:hover{opacity:.85}
+
+    /* =========================
+       HERO
+    ========================= */
+    .hero{
+      height:420px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.0) 70%),
+        url("assets/hero-flar.png") center/cover no-repeat;
+      display:flex;
+      align-items:center;
+    }
+    .hero .container{width:100%}
+    .hero-content{
+      margin-left:auto;
+      width:min(650px, 56%);
+      text-align:center;
+      color:#fff;
+      padding:0 10px;
+    }
+    .hero-title{font-size:46px;font-weight:600;margin:0 0 10px}
+    .hero-text{margin:0 auto 18px;max-width:640px;font-size:14px;line-height:1.8;color:rgba(255,255,255,.9)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:36px;padding:0 22px;border-radius:4px;
+      background:var(--accent);color:#fff;font-size:13px;font-weight:500;
+      border:0;cursor:pointer;
+    }
+    .btn:hover{filter:brightness(.96)}
+
+    /* =========================
+       SECTION: LUMINAIRES (TITLE + TEXT)
+    ========================= */
+    .section{padding:42px 0}
+    .section-title{
+      text-align:center;
+      font-size:34px;
+      font-weight:600;
+      margin:0 0 10px;
+      color:#111;
+    }
+    .title-underline{
+      width:430px;height:3px;background:var(--accent);
+      margin:0 auto 18px;
+    }
+    .section-lead{
+      max-width:1020px;
+      margin:0 auto;
+      text-align:center;
+      color:#444;
+      font-size:14px;
+      line-height:1.8;
+      font-weight:600;
+    }
+
+    /* =========================
+       CAROUSEL: CATEGORIES
+    ========================= */
+    .carousel-wrap{position:relative;margin-top:28px}
+    .carousel{
+      overflow:hidden;
+      padding:10px 44px; /* laisse place aux flèches */
+    }
+    .carousel-track{
+      display:flex;
+      gap:34px;
+      align-items:center;
+      transition:transform .45s ease;
+      will-change:transform;
+    }
+    .cat-card{
+      flex:0 0 330px;
+      height:190px;
+      border-radius:12px;
+      position:relative;
+      overflow:hidden;
+      background:#e9e9e9;
+      box-shadow:none;
+    }
+    .cat-card .img{position:absolute;inset:0;background:center/cover no-repeat}
+    .cat-card.dim{opacity:.35}
+    .cat-label{
+      position:absolute;
+      left:0;right:0;
+      bottom:10px;
+      text-align:center;
+      color:#bdbdbd;
+      font-weight:600;
+      font-size:16px;
+      text-shadow:0 2px 10px rgba(0,0,0,.2);
+    }
+    .cat-label.dark{color:#333}
+    .car-arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:34px;height:34px;border-radius:999px;
+      border:0;background:transparent;cursor:pointer;
+      display:grid;place-items:center;
+      color:#111;
+    }
+    .car-arrow.left{left:6px}
+    .car-arrow.right{right:6px}
+    .car-arrow span{font-size:40px;line-height:1;transform:translateY(-2px)}
+    .car-arrow:hover{opacity:.75}
+
+    /* =========================
+       SECTION: IDEE SUSPENSION (grand encadré)
+    ========================= */
+    .idea-title{font-size:38px;font-weight:600;text-align:center;margin:0 0 18px}
+    .frame{
+      border:2px solid #7b7b7b;
+      padding:10px;
+      background:#fff;
+      margin:0 auto;
+      max-width:1200px;
+    }
+    .frame-inner{
+      border:1px solid #bdbdbd;
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:0;
+      align-items:stretch;
+      min-height:420px;
+    }
+    .idea-img{
+      background:url("assets/idee-cuisine.jpg") center/cover no-repeat;
+      min-height:420px;
+    }
+    .product-side{
+      background:#f2f2f2;
+      border-left:1px solid #bdbdbd;
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+    }
+    .product-side h3{margin:2px 0 8px;font-size:20px;font-weight:600;color:#333}
+    .prod-img{
+      width:200px;height:200px;
+      background:#dcdcdc url("assets/produit-toy.png") center/cover no-repeat;
+      border:1px solid #bdbdbd;
+    }
+    .price{font-weight:700;color:#333;margin-top:4px}
+    .btn.small{height:34px;border-radius:4px;padding:0 26px}
+
+    /* =========================
+       BAND: EXCELLENCE
+    ========================= */
+    .band{
+      background:linear-gradient(90deg, rgba(0,0,0,.15), rgba(0,0,0,.08)), url("assets/band-texture.png") center/cover no-repeat;
+      color:#f2f2f2;
+      text-align:center;
+      padding:18px 10px;
+      font-size:28px;
+      font-weight:500;
+      letter-spacing:.3px;
+    }
+
+    /* =========================
+       TWO PROMO BLOCKS
+    ========================= */
+    .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:22px}
+    .promo{display:flex;flex-direction:column;gap:10px}
+    .promo h3{text-align:center;margin:0;font-size:26px;font-weight:600;color:#222}
+    .promo .box{
+      border:2px solid #5a5a5a;
+      border-radius:2px;
+      padding:0;
+      overflow:hidden;
+      background:#fff;
+      height:320px;
+    }
+    .promo .box .bg{height:100%;background:center/cover no-repeat}
+    .promo .bg.mirror{background-image:url("assets/promo-miroirs.png")}
+    .promo .bg.rugs{background-image:url("assets/promo-tapis.jpg")}
+
+    /* =========================
+       NOUVEAUTES SLIDER (produits)
+    ========================= */
+    .subtle{color:#333;font-style:italic;font-size:28px;font-weight:600;margin:0 0 12px}
+    .prod-wrap{position:relative}
+    .prod-viewport{overflow:hidden;padding:0 44px}
+    .prod-track{display:flex;gap:26px;transition:transform .45s ease;will-change:transform}
+    .p-card{
+      flex:0 0 240px;
+      border:2px solid #6a6a6a;
+      background:#fff;
+      padding:0;
+    }
+    .p-img{height:170px;background:center/cover no-repeat}
+    .p-body{padding:12px 12px 14px;text-align:center}
+    .p-name{font-size:18px;font-weight:500;margin:2px 0 8px}
+    .p-price{color:var(--accent);font-weight:500;margin:0 0 12px}
+    .p-btn{width:100%;max-width:180px;margin:0 auto;height:38px;border-radius:22px;background:var(--accent);color:#fff;border:0;font-weight:500;cursor:pointer}
+    .p-btn:hover{filter:brightness(.96)}
+    .dots{display:flex;justify-content:center;gap:10px;margin-top:18px}
+    .dot{width:7px;height:7px;border-radius:999px;background:#cfcfcf}
+    .dot.active{background:var(--accent)}
+
+    /* =========================
+       AVANTAGES
+    ========================= */
+    .advantages{padding:44px 0 30px}
+    .adv-title{text-align:center;font-size:34px;font-weight:700;margin:10px 0 26px}
+    .adv-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:30px;
+      align-items:start;
+      text-align:center;
+      margin-bottom:26px;
+    }
+    .adv-ico{width:36px;height:36px;margin:0 auto 10px;fill:var(--accent)}
+    .adv-h{font-size:20px;font-weight:700;margin:0 0 8px}
+    .adv-p{margin:0;color:#555;font-weight:500;line-height:1.6}
+    .cards-logos{display:flex;justify-content:center;gap:16px;align-items:center;margin-top:10px;flex-wrap:wrap}
+    .paylogo{height:30px;width:auto;filter:grayscale(1) contrast(1.2);opacity:.9}
+
+    .lower-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:6px}
+    .badge{
+      display:flex;justify-content:center;align-items:center;
+      padding:6px 0;
+    }
+    .badge img{max-width:360px;width:100%;height:auto}
+    .help{text-align:center}
+    .help h3{margin:0 0 10px;font-size:24px;font-weight:700}
+    .help p{margin:0 0 20px;color:#666;font-weight:600}
+    .help a{display:inline-block;color:#111;font-weight:500}
+
+    /* =========================
+       SCROLL TOP BUTTON (bas droite)
+    ========================= */
+    .to-top{
+      position:fixed;right:22px;bottom:22px;
+      width:46px;height:46px;border-radius:999px;
+      background:#111;border:0;cursor:pointer;
+      display:grid;place-items:center;
+      box-shadow:0 14px 26px rgba(0,0,0,.25);
+      opacity:1;
+    }
+    .to-top svg{width:18px;height:18px;fill:#fff}
+    .to-top:hover{filter:brightness(1.05)}
+    .to-top.hide{opacity:0;pointer-events:none}
+
+    /* =========================
+       FOOTER (simple, vitrine)
+    ========================= */
+    footer{background:#0a0a0a;color:#cfcfcf;padding:22px 0;margin-top:10px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+    .foot small{opacity:.9}
+    .foot a{opacity:.95}
+    .foot a:hover{opacity:.8}
+
+    /* =========================
+       RESPONSIVE (propre)
+    ========================= */
+    @media (max-width:1100px){
+      .header-inner{grid-template-columns:200px 1fr 150px}
+      .nav ul{gap:18px}
+      .nav a{font-size:16px}
+      .hero-content{width:min(680px, 64%)}
+      .two-cols{grid-template-columns:1fr}
+      .frame-inner{grid-template-columns:1fr}
+      .product-side{border-left:0;border-top:1px solid #bdbdbd}
+    }
+    @media (max-width:720px){
+      .header-inner{grid-template-columns:1fr;gap:14px;padding:16px 0 10px}
+      .brand{justify-content:center}
+      .head-icons{justify-content:center}
+      .nav ul{flex-wrap:wrap;row-gap:10px}
+      .hero{height:440px}
+      .hero-content{width:100%}
+      .title-underline{width:260px}
+      .carousel{padding:10px 34px}
+      .cat-card{flex-basis:260px}
+      .prod-viewport{padding:0 34px}
+      .p-card{flex-basis:220px}
+      .adv-grid{grid-template-columns:1fr;gap:22px}
+      .lower-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NOTICE -->
+  <div class="topbar">Livraison Offerte à partir de 100€ d'achat</div>
+
+  <!-- HEADER -->
+  <header class="header" aria-label="En-tête">
+    <div class="container header-inner">
+      <!-- LOGO (clic -> index.html) -->
+      <div class="brand">
+        <a href="index.html" aria-label="Retour à l'accueil (index)">
+          <img class="brand-logo" src="assets/logo-adesign.png" alt="ADesign — Architecture d'intérieur">
+          <div class="brand-sub">Architecture d’intérieur</div>
+        </a>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="search-wrap" aria-label="Recherche (vitrine)">
+        <form class="search" action="#" onsubmit="return false;">
+          <input type="search" placeholder="Saisissez et appuyez sur « Entrée »..." aria-label="Rechercher">
+          <button type="button" aria-label="Lancer la recherche (simulée)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 18a8 8 0 1 1 5.293-14.004A8 8 0 0 1 10 18Zm0-2a6 6 0 1 0-4.243-1.757A5.999 5.999 0 0 0 10 16Zm9.707 4.293-4.11-4.11 1.414-1.414 4.11 4.11-1.414 1.414Z"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- ICONS (visuels, pas d'ecommerce) -->
+      <div class="head-icons" aria-label="Icônes">
+        <a class="ico-btn" href="#" aria-label="Panier (désactivé)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7V6a6 6 0 0 1 12 0v1h2v15H4V7h2Zm2 0h8V6a4 4 0 0 0-8 0v1Z"/></svg>
+        </a>
+        <a class="ico-btn" href="#" aria-label="Compte (désactivé)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav" aria-label="Menu principal">
+      <div class="container">
+        <ul>
+          <!-- IMPORTANT: cette page = boutique.html même si “Accueil” -->
+          <li><a href="boutique.html">ACCUEIL</a></li>
+          <li><a href="luminaire.html">LUMINAIRES</a></li>
+          <li><a href="tapis.html">TAPIS</a></li>
+          <li><a href="miroir.html">MIROIR</a></li>
+          <li><a href="qsn.html">QUI SOMMES NOUS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <!-- IMPORTANT: showroom -> index.html -->
+          <li><a href="index.html">SHOWROOM</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Mise en avant produit">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Flar</h1>
+        <p class="hero-text">
+          S’inspirant des lanternes tempête traditionnelles qui utilisent des cylindres de verre pour protéger la flamme.
+          Flar diffuse une lumière très douce, filtrée par le verre teinté, presque comme une bougie contemporaine.
+        </p>
+        <a class="btn" href="#" aria-label="Découvrir ce produit (vitrine)">Découvrir ce produit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : DECOUVREZ LUMINAIRES -->
+  <section class="section" aria-label="Découvrez nos luminaires">
+    <div class="container">
+      <h2 class="section-title">Découvrez nos luminaires haut de gamme</h2>
+      <div class="title-underline" aria-hidden="true"></div>
+
+      <p class="section-lead">
+        Adesign, une passion pour l’éclairage et l’élégance. Chaque pièce de notre collection est soigneusement choisie
+        pour allier fonctionnalité, esthétique et qualité supérieure. Que vous recherchiez des suspensions, des appliques murales,
+        des lampes à poser ou des lampadaires, nous avons ce qu’il vous faut pour illuminer votre espace avec style.
+      </p>
+
+      <!-- Carousel catégories -->
+      <div class="carousel-wrap" aria-label="Catégories (carousel)">
+        <button class="car-arrow left" type="button" aria-label="Précédent" data-car="cats" data-dir="-1"><span>←</span></button>
+        <div class="carousel">
+          <div class="carousel-track" id="catsTrack">
+            <a class="cat-card dim" href="#" aria-label="Applique">
+              <div class="img" style="background-image:url('assets/cat-applique.png')"></div>
+              <div class="cat-label">Applique</div>
+            </a>
+
+            <a class="cat-card" href="#" aria-label="Lampadaires">
+              <div class="img" style="background-image:url('assets/cat-applique.jpg')"></div>
+              <div class="cat-label dark">Lampadaires</div>
+            </a>
+
+            <a class="cat-card dim" href="#" aria-label="Lampe de table">
+              <div class="img" style="background-image:url('assets/cat-lampe-table.png')"></div>
+              <div class="cat-label">Lampe de table</div>
+            </a>
+          </div>
+        </div>
+        <button class="car-arrow right" type="button" aria-label="Suivant" data-car="cats" data-dir="1"><span>→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : IDEE SUSPENSION -->
+  <section class="section" aria-label="Idée de suspension">
+    <div class="container">
+      <h2 class="idea-title">Idée de suspension design pour la cuisine</h2>
+
+      <div class="frame" role="group" aria-label="Encadré inspiration + produit">
+        <div class="frame-inner">
+          <div class="idea-img" aria-label="Image inspiration cuisine"></div>
+
+          <aside class="product-side" aria-label="Carte produit">
+            <h3>Suspension TOY</h3>
+            <div class="prod-img" aria-label="Image produit"></div>
+            <div class="price">170 €</div>
+            <a class="btn small" href="#" aria-label="Découvrir (vitrine)">Découvrir</a>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band" aria-label="Bandeau">
+    L’Excellence à portée de main
+  </div>
+
+  <!-- SECTION : MIROIRS / TAPIS -->
+  <section class="section" aria-label="Blocs miroirs et tapis">
+    <div class="container">
+      <div class="two-cols">
+        <div class="promo">
+          <h3>Découvrez nos miroirs</h3>
+          <div class="box"><div class="bg mirror" aria-label="Image miroirs"></div></div>
+        </div>
+        <div class="promo">
+          <h3>Découvrez nos tapis</h3>
+          <div class="box"><div class="bg rugs" aria-label="Image tapis"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : NOUVEAUTES -->
+  <section class="section" aria-label="Nouveautés">
+    <div class="container">
+      <h3 class="subtle">Nouveautés :</h3>
+
+      <div class="prod-wrap">
+        <button class="car-arrow left" type="button" aria-label="Précédent produits" data-car="prods" data-dir="-1"><span>←</span></button>
+        <div class="prod-viewport">
+          <div class="prod-track" id="prodsTrack">
+
+            <article class="p-card">
+              <div class="p-img" style="background-image:url('assets/prod-liam.jpg')" aria-label="Liam"></div>
+              <div class="p-body">
+                <div class="p-name">Liam</div>
+                <p class="p-price">138,00 €</p>
+                <button class="p-btn" type="button">Découvrir ce produit</button>
+              </div>
+            </article>
+
+            <article class="p-card">
+              <div class="p-img" style="background-image:url('assets/prod-tolomeo-applique.jpg')" aria-label="TOLOMEO Applique"></div>
+              <div class="p-body">
+                <div class="p-name">TOLOMEO Applique</div>
+                <p class="p-price">184,00 €</p>
+                <button class="p-btn" type="button">Découvrir ce produit</button>
+              </div>
+            </article>
+
+            <article class="p-card">
+              <div class="p-img" style="background-image:url('assets/prod-tolomeo-chevet.jpg')" aria-label="TOLOMEO chevet"></div>
+              <div class="p-body">
+                <div class="p-name">TOLOMEO chevet</div>
+                <p class="p-price">209,00 €</p>
+                <button class="p-btn" type="button">Découvrir ce produit</button>
+              </div>
+            </article>
+
+            <article class="p-card">
+              <div class="p-img" style="background-image:url('assets/prod-tolomeo.jpg')" aria-label="TOLOMEO"></div>
+              <div class="p-body">
+                <div class="p-name">TOLOMEO</div>
+                <p class="p-price">502,00 €</p>
+                <button class="p-btn" type="button">Découvrir ce produit</button>
+              </div>
+            </article>
+
+            <article class="p-card">
+              <div class="p-img" style="background-image:url('assets/prod-noemi-applique.jpg')" aria-label="NOEMI Applique"></div>
+              <div class="p-body">
+                <div class="p-name">NOEMI Applique</div>
+                <p class="p-price">218,00 €</p>
+                <button class="p-btn" type="button">Découvrir ce produit</button>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="dots" aria-label="Pagination">
+            <span class="dot active" id="dot0"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <button class="car-arrow right" type="button" aria-label="Suivant produits" data-car="prods" data-dir="1"><span>→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : AVANTAGES -->
+  <section class="advantages" aria-label="Vos avantages">
+    <div class="container">
+      <div class="adv-title">Vos avantages Adesign</div>
+
+      <div class="adv-grid">
+        <!-- Satisfait -->
+        <div>
+          <svg class="adv-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1-10 10Zm0-18a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm1 4v5.2l3.2 1.9-1 1.7L11 14V8h2Z"/></svg>
+          <div class="adv-h">SATISFAIT OU REMBOURSÉ</div>
+          <p class="adv-p">15 jours pour changer d’avis</p>
+        </div>
+
+        <!-- Livraison -->
+        <div>
+          <svg class="adv-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h13v9H3V6Zm13 3h3l2 3v3h-5V9Zm-9 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>
+          <div class="adv-h">LIVRAISON OFFERTE</div>
+          <p class="adv-p">À domicile dès 100 € d’achat<br>&amp; En magasin sans montant minimum</p>
+        </div>
+      </div>
+
+      <div class="lower-grid">
+        <div class="badge" aria-label="Badge Maison & Jardin">
+          <img src="assets/maison-jardin.png" alt="Professionnel certifié par Maison & Jardin">
+        </div>
+
+        <div class="help" aria-label="Besoin d'aide">
+          <h3>Besoin d'aide ?</h3>
+          <p>Nous vous répondrons au plus vite.</p>
+          <a href="contact.html">Contactez-nous</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer aria-label="Pied de page">
+    <div class="container foot">
+      <small>© ADesign — Tous droits réservés</small>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" aria-label="Mentions légales">Mentions légales</a>
+        <a href="#" aria-label="Politique de confidentialité">Confidentialité</a>
+        <a href="contact.html" aria-label="Contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="to-top hide" id="toTop" aria-label="Retour en haut">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 5 12l1.4 1.4L11 8.8V20h2V8.8l4.6 4.6L19 12 12 5Z"/></svg>
+  </button>
+
+  <script>
+    /* =========================================================
+       Micro interactions (vitrine) :
+       - Carousels (catégories + nouveautés) : déplacement fixe
+       - Bouton retour en haut
+    ========================================================= */
+
+    // --- Generic carousel helper
+    function makeCarousel(trackEl, cardSelector, dotsContainer){
+      const cards = Array.from(trackEl.querySelectorAll(cardSelector));
+      let index = 0;
+
+      function cardStep(){
+        // distance = largeur carte + gap (mesuré)
+        const a = cards[0];
+        if(!a) return 0;
+        const st = getComputedStyle(trackEl);
+        const gap = parseFloat(st.gap || "0");
+        return a.getBoundingClientRect().width + gap;
+      }
+
+      function render(){
+        const step = cardStep();
+        trackEl.style.transform = `translateX(${-index * step}px)`;
+
+        if(dotsContainer){
+          const dots = Array.from(dotsContainer.querySelectorAll(".dot"));
+          dots.forEach((d,i)=>d.classList.toggle("active", i===index));
+        }
+      }
+
+     function move(dir){
+  const n = Math.max(1, cards.length);
+  index = (index + dir + n) % n; // boucle infinie
+  render();
+}
+
+      window.addEventListener("resize", render);
+      render();
+
+      return { move, set(i){ index=i; render(); }, get(){ return index; } };
+    }
+
+    // --- Categories carousel (3 items) : on garde centre “Lampadaires”
+    const catsTrack = document.getElementById("catsTrack");
+    const cats = makeCarousel(catsTrack, ".cat-card", null);
+    // start centered on item 1
+    cats.set(1);
+
+    // --- Products carousel (5 items)
+    const prodsTrack = document.getElementById("prodsTrack");
+    const dots = prodsTrack.parentElement.querySelector(".dots");
+    const prods = makeCarousel(prodsTrack, ".p-card", dots);
+    prods.set(0);
+
+    // --- Arrow buttons
+    document.querySelectorAll("[data-car][data-dir]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const car = btn.getAttribute("data-car");
+        const dir = parseInt(btn.getAttribute("data-dir"),10);
+        if(car==="cats") cats.move(dir);
+        if(car==="prods") prods.move(dir);
+      });
+    });
+
+    // --- Scroll top button
+    const toTop = document.getElementById("toTop");
+    function toggleTop(){
+      if(window.scrollY > 500) toTop.classList.remove("hide");
+      else toTop.classList.add("hide");
+    }
+    window.addEventListener("scroll", toggleTop);
+    toggleTop();
+    toTop.addEventListener("click", ()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+    // --- Fake “recherche” click (vitrine)
+    document.querySelector(".search button").addEventListener("click", ()=>{
+      const input = document.querySelector(".search input");
+      input.focus();
+    });
+  </script>
+</body>
+</html>

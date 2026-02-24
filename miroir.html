@@ -1,0 +1,429 @@
+<!-- miroir.html — Page “Miroir” (version vitrine statique, pixel-perfect desktop prioritaire) -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Miroir design — ADesign</title>
+  <meta name="description" content="Découvrez notre sélection de miroirs design." />
+
+  <!-- Polices (proche du rendu des captures) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#0b0b0b;
+      --header-black:#0a0a0a;
+      --gold:#b88a5b;
+      --gold-2:#9f7448;
+      --text:#111;
+      --muted:#6f6f6f;
+      --btn-b:#dcdcdc;
+      --btn-t:#7f7f7f;
+      --container:1500px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* =========================
+       HEADER (top + main)
+    ========================== */
+    .topbar{background:var(--header-black);color:var(--gold);text-align:center;font-size:12px;letter-spacing:.2px;padding:10px 12px}
+    .header{background:var(--black)}
+    .header-inner{max-width:var(--container);margin:0 auto;padding:18px 30px 8px}
+    .header-row{display:grid;grid-template-columns:260px 1fr 140px;align-items:center;gap:24px}
+
+    .brand{display:flex;flex-direction:column;gap:2px}
+    .brand a{display:inline-block}
+    .brand img{width:200px;height:auto}
+    .brand small{color:var(--gold-2);opacity:.85;font-size:12px;margin-left:2px}
+
+    .search{display:flex;justify-content:center}
+    .search-box{width:min(720px,100%);display:flex;border-radius:2px;overflow:hidden}
+    .search-box input{
+      width:100%;height:38px;border:1px solid #cfcfcf;border-right:none;outline:none;
+      background:#f3f3f3;padding:0 14px;font-size:12px;color:#666;
+    }
+    .search-box button{
+      width:42px;height:38px;border:1px solid var(--gold);background:var(--gold);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+    }
+    .search-box svg{width:16px;height:16px;fill:#fff}
+
+    .header-icons{display:flex;justify-content:flex-end;gap:26px;padding-right:4px}
+    .icon-btn{width:30px;height:30px;display:grid;place-items:center;opacity:.95}
+    .icon-btn svg{width:24px;height:24px;fill:#fff}
+
+    .nav{max-width:var(--container);margin:0 auto;padding:8px 30px 14px}
+    .nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:26px}
+    .nav a{color:#fff;font-size:16px;font-weight:500;letter-spacing:.2px;padding:6px 0;display:inline-block}
+    .nav a:hover{opacity:.85}
+
+    /* =========================
+       BREADCRUMB + TITLE + INTRO
+    ========================== */
+    .breadcrumb{max-width:var(--container);margin:0 auto;padding:18px 30px 0;font-size:13px;color:#666}
+    .breadcrumb span.sep{margin:0 6px;color:#bbb}
+    .breadcrumb a{color:#111}
+    .breadcrumb a:hover{text-decoration:underline}
+    .breadcrumb .current{color:var(--gold)}
+
+    .page-title{max-width:var(--container);margin:0 auto;padding:36px 30px 10px;text-align:center}
+    .page-title h1{margin:0;font-size:34px;font-weight:700;color:#111}
+    .page-title .underline{width:520px;max-width:58vw;height:3px;background:var(--gold);margin:16px auto 0;border-radius:2px}
+
+    .intro{max-width:var(--container);margin:0 auto;padding:18px 30px 22px}
+    .intro p{
+      margin:0 auto;
+      max-width:1400px;
+      text-align:center;
+      color:#222;
+      font-size:15px;
+      line-height:1.75;
+      font-weight:500;
+    }
+
+    /* =========================
+       PRODUCTS GRID
+    ========================== */
+    .wrap{max-width:var(--container);margin:0 auto;padding:18px 30px 90px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      column-gap:82px;
+      row-gap:86px;
+      align-items:start;
+    }
+    .product{text-align:center}
+    .thumb{
+      width:100%;
+      aspect-ratio:1/1;
+      background:#f4f4f4 center/cover no-repeat;
+    }
+    .name{margin:16px 0 0;font-size:13px;font-weight:600;color:#2b2b2b}
+    .price{margin:18px 0 12px;font-size:16px;font-weight:500;color:var(--gold)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 18px;
+      border:2px solid var(--btn-b);color:var(--btn-t);background:#fff;
+      font-size:12px;font-weight:600;letter-spacing:.2px;border-radius:2px;cursor:pointer;user-select:none;
+    }
+    .btn:hover{filter:brightness(.98)}
+    .btn:active{transform:translateY(1px)}
+    .btn[aria-disabled="true"]{cursor:default;opacity:.95}
+
+    /* =========================
+       Back to top (floating)
+    ========================== */
+    .to-top{
+      position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:999px;background:#111;
+      display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);
+      transition:opacity .18s ease,transform .18s ease;z-index:50;
+    }
+    .to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .to-top svg{width:18px;height:18px;fill:#fff}
+
+    /* =========================
+       Responsive (propre)
+    ========================== */
+    @media (max-width:1400px){:root{--container:1200px}.grid{column-gap:60px;row-gap:70px}}
+    @media (max-width:1100px){
+      .header-row{grid-template-columns:220px 1fr 120px}
+      .nav ul{flex-wrap:wrap;row-gap:10px}
+      .grid{grid-template-columns:repeat(3,1fr);column-gap:40px}
+    }
+    @media (max-width:760px){
+      .header-inner{padding:14px 16px 8px}
+      .nav{padding:6px 16px 12px}
+      .breadcrumb{padding:14px 16px 0}
+      .page-title{padding:26px 16px 10px}
+      .intro{padding:14px 16px 10px}
+      .wrap{padding:14px 16px 80px}
+      .header-row{grid-template-columns:1fr;gap:12px}
+      .header-icons{justify-content:center}
+      .brand{align-items:center}
+      .grid{grid-template-columns:repeat(2,1fr);column-gap:18px;row-gap:46px}
+      .page-title h1{font-size:28px}
+      .intro p{font-size:14px}
+    }
+    @media (max-width:420px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       TOP BAR
+  ========================== -->
+  <div class="topbar">Livraison Offerte à partir de 100€ d'achat</div>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <div class="header-row">
+
+        <!-- Logo (clic -> index.html) -->
+        <div class="brand">
+          <a href="index.html" aria-label="Aller à l'accueil ADesign">
+            <img src="assets/logo-adesign.png" alt="ADesign — Architecture d’intérieur">
+          </a>
+          <small>Architecture d’intérieur</small>
+        </div>
+
+        <!-- Search (visuel) -->
+        <div class="search" aria-label="Recherche">
+          <div class="search-box" role="search">
+            <input type="search" placeholder="Saisissez et appuyez sur « Entrée »..." aria-label="Rechercher">
+            <button type="button" aria-label="Rechercher (non fonctionnel)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Icons (visuels) -->
+        <div class="header-icons" aria-label="Panier et compte (visuels)">
+          <a class="icon-btn" href="#" aria-label="Panier (vitrine)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7V6a5 5 0 0110 0v1h3a1 1 0 011 1l-1 13a2 2 0 01-2 2H6a2 2 0 01-2-2L3 8a1 1 0 011-1h3zm2 0h6V6a3 3 0 00-6 0v1z"/></svg>
+          </a>
+          <a class="icon-btn" href="#" aria-label="Compte (vitrine)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Menu (liens demandés) -->
+    <nav class="nav" role="navigation" aria-label="Menu principal">
+      <ul>
+        <li><a href="boutique.html">ACCUEIL</a></li>
+        <li><a href="luminaire.html">LUMINAIRES</a></li>
+        <li><a href="tapis.html">TAPIS</a></li>
+        <li><a href="miroir.html">MIROIR</a></li>
+        <li><a href="qsn.html">QUI SOMMES NOUS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="index.html">SHOWROOM</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="boutique.html">Accueil</a><span class="sep">»</span><span class="current">Miroir</span>
+  </div>
+
+  <!-- Title -->
+  <section class="page-title" aria-label="Titre de la page">
+    <h1>Miroir design</h1>
+    <div class="underline" aria-hidden="true"></div>
+  </section>
+
+  <!-- Intro text -->
+  <section class="intro" aria-label="Introduction">
+    <p>
+      Chez Adesign, nous offrons une large sélection de miroirs design qui allient fonctionnalité et esthétique.
+      Nos collections, soigneusement sélectionnées, s’adaptent à tous les styles, du moderne au classique, en passant par
+      le minimaliste et l’industriel. Découvrez notre gamme variée de miroirs muraux, sur pied ou encore à poser, idéaux
+      pour agrandir visuellement vos espaces, apporter de la lumière et ajouter une touche d’élégance unique à votre décoration.
+    </p>
+  </section>
+
+  <!-- =========================
+       PRODUCTS
+  ========================== -->
+  <main class="wrap" role="main" aria-label="Liste des miroirs">
+    <section class="grid" aria-label="Grille produits">
+
+      <!-- Row 2 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-b-light-1.jpg')" role="img" aria-label="Miroir B.Light 1"></div>
+        <div class="name">B.Light 1</div>
+        <div class="price">750,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-brio.png')" role="img" aria-label="Miroir Brio"></div>
+        <div class="name">Brio</div>
+        <div class="price">700,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-circo.png')" role="img" aria-label="Miroir Circo"></div>
+        <div class="name">Circo</div>
+        <div class="price">643,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-connect.png')" role="img" aria-label="Miroir Connect"></div>
+        <div class="name">Connect</div>
+        <div class="price">1150,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-nick.png')" role="img" aria-label="Miroir Nick"></div>
+        <div class="name">Nick</div>
+        <div class="price">1450,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <!-- Row 3 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-contour.png')" role="img" aria-label="Miroir Contour"></div>
+        <div class="name">Contour</div>
+        <div class="price">725,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-criss-cross.png')" role="img" aria-label="Miroir Criss Cross"></div>
+        <div class="name">Criss Cross</div>
+        <div class="price">725,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-kyo.png')" role="img" aria-label="Miroir Kyo"></div>
+        <div class="name">Kyo</div>
+        <div class="price">380,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-polygone.png')" role="img" aria-label="Miroir Polygone"></div>
+        <div class="name">Polygone</div>
+        <div class="price">225,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-versaille.png')" role="img" aria-label="Miroir Versaille"></div>
+        <div class="name">Versaille</div>
+        <div class="price">1300,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <!-- Row 4 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-arbo-l.png')" role="img" aria-label="Miroir Arbo L"></div>
+        <div class="name">Arbo L</div>
+        <div class="price">688,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-arbo-m.png')" role="img" aria-label="Miroir Arbo M"></div>
+        <div class="name">Arbo M</div>
+        <div class="price">588,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-calco.png')" role="img" aria-label="Miroir Calco"></div>
+        <div class="name">Calco</div>
+        <div class="price">1100,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-diva.png')" role="img" aria-label="Miroir Diva"></div>
+        <div class="name">Diva</div>
+        <div class="price">975,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-bordo.png')" role="img" aria-label="Miroir Bordo"></div>
+        <div class="name">Bordo</div>
+        <div class="price">988,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <!-- Row 5 -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-travertin.png')" role="img" aria-label="Miroir Travertin"></div>
+        <div class="name">Travertin</div>
+        <div class="price">645,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-nico.png')" role="img" aria-label="Miroir Nico"></div>
+        <div class="name">Nico</div>
+        <div class="price">600,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Lire la suite</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-opera.png')" role="img" aria-label="Miroir Opéra"></div>
+        <div class="name">Opéra</div>
+        <div class="price">650,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-luna.png')" role="img" aria-label="Miroir Luna"></div>
+        <div class="name">Luna</div>
+        <div class="price">1475,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-scratch.png')" role="img" aria-label="Miroir Scratch"></div>
+        <div class="name">Scratch</div>
+        <div class="price">998,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <!-- Row 6 (visible en bas de capture) -->
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-pixel.png')" role="img" aria-label="Miroir Pixel"></div>
+        <div class="name">Pixel</div>
+        <div class="price">525,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+      <article class="product">
+        <div class="thumb" style="background-image:url('assets/miroir-museo.png')" role="img" aria-label="Miroir Muséo"></div>
+        <div class="name">Muséo</div>
+        <div class="price">975,00&nbsp;€</div>
+        <a class="btn" href="#" aria-disabled="true">Ajouter au panier</a>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Back to top -->
+  <button class="to-top" id="toTop" type="button" aria-label="Revenir en haut">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7 1.41 1.41L11 8.83V20h2V8.83l4.59 4.58L19 12z"/></svg>
+  </button>
+
+  <script>
+    // Bouton "haut de page"
+    const toTop = document.getElementById('toTop');
+    const toggleTop = () => {
+      if (window.scrollY > 450) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    };
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+    // Recherche = visuelle (pas de backend)
+    document.querySelector('.search-box input')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>
