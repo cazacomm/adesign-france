@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18225485568"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18225485568');
+  </script>
  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -463,6 +471,23 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
     scrollTopBtn?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  </script>
+  <!-- Suivi de conversion Google Ads -->
+  <script>
+    function trackDevisConversion(){
+      gtag('event','conversion',{'send_to':'AW-18225485568/KdnrCPqK6rscEICuy_JD','value':1.0,'currency':'EUR'});
+    }
+    // Conversion sur les clics tel: et mailto: (event_callback en secours pour ne pas perdre l'evenement avant navigation)
+    document.addEventListener('click', function(e){
+      var a = (e.target && e.target.closest) ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+      if(!a) return;
+      gtag('event','conversion',{
+        'send_to':'AW-18225485568/KdnrCPqK6rscEICuy_JD',
+        'value':1.0,
+        'currency':'EUR',
+        'event_callback': function(){}
+      });
+    }, true);
   </script>
 </body>
 </html>

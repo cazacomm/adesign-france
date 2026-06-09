@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18225485568"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18225485568');
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -376,7 +384,7 @@
             <h3>CUISINES</h3>
             <div class="mini-rule" aria-hidden="true"></div>
             <p>La cuisine vue comme un moment d’agrégation où la convivialité et la créativité se fondent. ADesign interprète au mieux les besoins et attentes de l’utilisateur afin de trouver des solutions formelles et esthétiques.</p>
-            <a class="btn" href="#">Se renseigner</a>
+            <a class="btn" href="cuisine.html">Se renseigner</a>
           </div>
         </article>
 
@@ -386,7 +394,7 @@
             <h3>SALLES DE BAIN</h3>
             <div class="mini-rule" aria-hidden="true"></div>
             <p>La pièce bien-être de votre lieu de vie. Spacieuse et fonctionnelle elle peut aussi être audacieuse ou plus classique.</p>
-            <a class="btn" href="#">Se renseigner</a>
+            <a class="btn" href="contact.html">Se renseigner</a>
           </div>
         </article>
 
@@ -396,7 +404,7 @@
             <h3>DRESSINGS</h3>
             <div class="mini-rule" aria-hidden="true"></div>
             <p>Votre dressing sur mesure, adapté à vos besoins, à votre garde-robe. Tiroirs à chemise, portes chaussures, penderies, tout est envisageable pour vous faciliter la vie&nbsp;!</p>
-            <a class="btn" href="#">Se renseigner</a>
+            <a class="btn" href="contact.html">Se renseigner</a>
           </div>
         </article>
       </div>
@@ -408,7 +416,7 @@
             <h3>SÉJOURS</h3>
             <div class="mini-rule" aria-hidden="true"></div>
             <p>Divertissement en famille ou réceptions amicales, cette pièce reflète votre art de vivre. A votre image et dans vos couleurs toutes les combinaisons sont à portée de main&nbsp;!</p>
-            <a class="btn" href="#">Se renseigner</a>
+            <a class="btn" href="contact.html">Se renseigner</a>
           </div>
         </article>
 
@@ -418,7 +426,7 @@
             <h3>CHAMBRES</h3>
             <div class="mini-rule" aria-hidden="true"></div>
             <p>Plus besoin de choisir entre le confort et l’esthétique, ADesign associe les deux et saura rendre réelles toutes vos rêveries.</p>
-            <a class="btn" href="#">Se renseigner</a>
+            <a class="btn" href="contact.html">Se renseigner</a>
           </div>
         </article>
       </div>
@@ -560,6 +568,23 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
     scrollTopBtn?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  </script>
+  <!-- Suivi de conversion Google Ads -->
+  <script>
+    function trackDevisConversion(){
+      gtag('event','conversion',{'send_to':'AW-18225485568/KdnrCPqK6rscEICuy_JD','value':1.0,'currency':'EUR'});
+    }
+    // Conversion sur les clics tel: et mailto: (event_callback en secours pour ne pas perdre l'evenement avant navigation)
+    document.addEventListener('click', function(e){
+      var a = (e.target && e.target.closest) ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+      if(!a) return;
+      gtag('event','conversion',{
+        'send_to':'AW-18225485568/KdnrCPqK6rscEICuy_JD',
+        'value':1.0,
+        'currency':'EUR',
+        'event_callback': function(){}
+      });
+    }, true);
   </script>
 </body>
 </html>
