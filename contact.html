@@ -252,6 +252,30 @@
     .scroll-top{position:fixed;right:18px;bottom:18px;width:40px;height:40px;border-radius:2px;border:0;background:rgba(0,0,0,.45);color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:90}
     .scroll-top:hover{background:rgba(0,0,0,.8)}
 
+    /* Formulaire devis (repris de la page cuisine) */
+    .devis{background:#faf7f4;padding:60px 0;margin-top:34px;scroll-margin-top:90px}
+    .section-title{text-align:center;margin:0 0 8px;font-size:32px;letter-spacing:.04em;text-transform:uppercase;color:#1b1b1b}
+    .section-rule{width:200px;height:2px;background:var(--gold);margin:14px auto 34px}
+    .lead{max-width:760px;margin:0 auto 10px;text-align:center;color:var(--muted);font-size:17px;line-height:1.7}
+    .devis-wrap{max-width:720px;margin:0 auto}
+    .devis-form{background:#fff;border:1px solid rgba(155,116,78,.16);border-radius:10px;padding:34px 30px;box-shadow:0 10px 26px rgba(0,0,0,.07)}
+    .field{margin-bottom:18px;text-align:left}
+    .field label{display:block;font-weight:600;font-size:14px;margin-bottom:7px;color:#3a3133}
+    .field input,.field textarea{width:100%;padding:13px 14px;border:1px solid #d8cfc8;border-radius:6px;font-family:inherit;font-size:15px;color:#1b1b1b;background:#fff;transition:border-color .15s,box-shadow .15s}
+    .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold-2);box-shadow:0 0 0 3px rgba(160,121,87,.15)}
+    .field textarea{min-height:130px;resize:vertical}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold-2);color:#fff;padding:16px 30px;border-radius:4px;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;border:0;cursor:pointer;transition:filter .15s}
+    .btn-primary:hover{filter:brightness(.92)}
+    .btn-primary svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+    .submit-btn{width:100%;justify-content:center;font-size:16px;margin-top:4px}
+    .submit-btn[disabled]{opacity:.6;cursor:not-allowed}
+    .form-status{margin-top:16px;font-size:15px;font-weight:600;display:none}
+    .form-status.ok{display:block;color:#1d7a44}
+    .form-status.err{display:block;color:#b23b3b}
+    .form-hint{font-size:13px;color:var(--muted);margin:14px 0 0;text-align:center}
+    .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
     /* Responsive */
     @media (max-width:980px){
       .footer-inner{grid-template-columns:1fr;gap:26px}
@@ -269,6 +293,7 @@
       .infotxt{font-size:22px}
       .cta-row{flex-direction:column;align-items:stretch}
       .cta{justify-content:center}
+      .row2{grid-template-columns:1fr}
       .mail-alt-row{flex-direction:column;align-items:stretch}
       .mail-alt-btn{justify-content:center}
     }
@@ -357,6 +382,10 @@
 
         <!-- CTA principaux -->
         <div class="cta-row">
+          <a class="cta" href="#devis">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-7 9h-2V7h2v4zm0 4h-2v-2h2v2z"/></svg>
+            Demander un devis gratuit
+          </a>
           <a class="cta" href="tel:+33760456286">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.7 22 2 13.3 2 2c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>
             Appeler
@@ -380,6 +409,55 @@
       </div>
     </div>
   </main>
+
+  <!-- FORMULAIRE DEVIS (repris de la page cuisine) -->
+  <section class="devis" id="devis">
+    <div class="container">
+      <h2 class="section-title">Demande de devis gratuit</h2>
+      <div class="section-rule" aria-hidden="true"></div>
+      <p class="lead">Décrivez-nous votre projet, nous vous recontactons rapidement.</p>
+
+      <div class="devis-wrap" style="margin-top:34px">
+        <form id="devis-form" class="devis-form" novalidate>
+          <!-- Web3Forms : clé d'accès du compte ADesign -->
+          <input type="hidden" name="access_key" value="ce0ddedb-9ec8-422c-90d7-4d0194058569">
+          <input type="hidden" name="subject" value="Nouvelle demande de devis — adesign-france.fr (Contact)">
+          <input type="hidden" name="from_name" value="Site ADesign — Page Contact">
+          <!-- Anti-spam (honeypot) -->
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+          <div class="row2">
+            <div class="field">
+              <label for="f-name">Nom et prénom *</label>
+              <input id="f-name" type="text" name="name" required autocomplete="name" placeholder="Votre nom">
+            </div>
+            <div class="field">
+              <label for="f-phone">Téléphone *</label>
+              <input id="f-phone" type="tel" name="phone" required autocomplete="tel" placeholder="06 12 34 56 78">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-email">E-mail *</label>
+            <input id="f-email" type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
+          </div>
+
+          <div class="field">
+            <label for="f-message">Votre projet *</label>
+            <textarea id="f-message" name="message" required placeholder="Décrivez votre projet : cuisine, salle de bains, dressing, séjour… dimensions, style souhaité, budget, délais…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary submit-btn">
+            <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+            Envoyer ma demande
+          </button>
+
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-hint">* Champs obligatoires. Vos informations restent confidentielles et ne servent qu'à traiter votre demande.</p>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer id="contact">
@@ -484,6 +562,48 @@
         'event_callback': function(){}
       });
     }, true);
+  </script>
+
+  <!-- Formulaire devis — Web3Forms (envoi AJAX, conversion sur succès) -->
+  <script>
+    (function(){
+      const form = document.getElementById('devis-form');
+      if(!form) return;
+      const status = document.getElementById('form-status');
+      const btn = form.querySelector('button[type="submit"]');
+      const btnLabel = btn ? btn.innerHTML : '';
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if(!form.reportValidity()) return;
+        status.className = 'form-status';
+        status.textContent = '';
+        if(btn){ btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+
+        try{
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          const data = await res.json().catch(()=>({}));
+          if(res.ok && data.success){
+            status.className = 'form-status ok';
+            status.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons rapidement.';
+            form.reset();
+            if(typeof trackDevisConversion === 'function') trackDevisConversion(); // conversion Google Ads sur succès
+          } else {
+            status.className = 'form-status err';
+            status.textContent = (data && data.message) ? data.message : 'Une erreur est survenue. Merci de réessayer ou de nous appeler au 07 60 45 62 86.';
+          }
+        } catch(err){
+          status.className = 'form-status err';
+          status.textContent = 'Erreur réseau. Merci de réessayer ou de nous appeler au 07 60 45 62 86.';
+        } finally {
+          if(btn){ btn.disabled = false; btn.innerHTML = btnLabel; }
+        }
+      });
+    })();
   </script>
 </body>
 </html>
