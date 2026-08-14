@@ -257,14 +257,29 @@ articles solides et bien maillés que douze articles superficiels.
 
 ## 8. Points en attente
 
-Deux éléments repérés lors de la mise en place du blog, à traiter côté client :
+### Résolus
 
-1. **`/mentions.html`** : la page a été créée (elle était liée depuis le footer
-   sans exister). Les champs juridiques y sont marqués `[À COMPLÉTER]` — forme
-   juridique, SIRET, TVA, RCS, directeur de la publication, durée de
-   conservation des données. **Ils doivent être renseignés par ADesign.**
-2. **`boutique.html`** porte le titre `ADesign — Accueil`, identique en intention
-   à celui de la page d'accueil. Un titre dupliqué pénalise l'indexation :
-   à réécrire (par exemple `Boutique déco — luminaires, miroirs, tapis |
-   ADesign Tarbes`). Non modifié ici pour ne pas toucher au contenu éditorial
-   existant sans validation.
+- **`/mentions.html`** : page créée puis complétée avec les informations
+  légales définitives de JPA (SAS, RCS Tarbes 823 043 419), la section RGPD
+  et la section cookies. Plus aucun champ en attente.
+- **`boutique.html`** : le `<title>` dupliqué `ADesign — Accueil` a été
+  corrigé en `ADesign — Boutique`, `og:title` et `twitter:title` alignés.
+- **`luminaire.html`** : l'image `kira.jpg` (inexistante) pointe désormais
+  vers `kira.png`.
+
+### En attente d'arbitrage
+
+1. **Bandeau de consentement aux cookies.** Le tag Google Ads
+   (`AW-18225485568`) est chargé sur les 12 pages du site et dépose des
+   cookies publicitaires. Ce type de cookie n'étant pas exempté de
+   consentement, la CNIL impose en principe un bandeau permettant de
+   l'accepter ou de le refuser **avant** tout dépôt. Les mentions légales
+   décrivent aujourd'hui le dispositif honnêtement et renvoient vers les
+   paramètres Google, mais cela ne remplace pas un recueil de consentement.
+   Deux options : installer un bandeau, ou retirer le tag des pages où il
+   n'est pas nécessaire.
+2. **Adresse.** Le siège social déclaré est au **28** Cours Gambetta, alors
+   que le footer et le JSON-LD `LocalBusiness` de toutes les pages indiquent
+   le **26** Cours Gambetta. Si le showroom et le siège sont à deux adresses
+   distinctes, tout est cohérent ; s'il s'agit d'une coquille, il faut
+   corriger le numéro partout (footers, JSON-LD, fiche Google Business).
