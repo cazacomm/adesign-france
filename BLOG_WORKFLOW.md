@@ -277,10 +277,22 @@ articles solides et bien maillés que douze articles superficiels.
   deviendra alors nécessaire, les cookies publicitaires n'en étant pas
   exemptés.
 
-### En attente d'arbitrage
+- **Adresse** : le site indiquait le **26** Cours Gambetta alors que le siège
+  social déclaré est au **28**. Il s'agissait d'une coquille : les 24
+  occurrences ont été corrigées (footers, JSON-LD `LocalBusiness`, meta
+  descriptions, liens et carte Google Maps, `llms.txt`). La forme abrégée
+  « 26 Cr Gambetta » des footers a été normalisée en « 28 Cours Gambetta »
+  pour que l'adresse soit strictement identique partout.
 
-1. **Adresse.** Le siège social déclaré est au **28** Cours Gambetta, alors
-   que le footer et le JSON-LD `LocalBusiness` de toutes les pages indiquent
-   le **26** Cours Gambetta. Si le showroom et le siège sont à deux adresses
-   distinctes, tout est cohérent ; s'il s'agit d'une coquille, il faut
-   corriger le numéro partout (footers, JSON-LD, fiche Google Business).
+### À vérifier hors du dépôt
+
+L'adresse doit être **identique au caractère près** sur le site, sur la fiche
+Google Business Profile et sur les annuaires (Pages Jaunes, etc.) : c'est ce
+que Google appelle la cohérence NAP (Name, Address, Phone), et une divergence
+dégrade le référencement local. Le dépôt est maintenant aligné sur
+« 28 Cours Gambetta, 65000 Tarbes » — reste à contrôler les supports externes.
+
+Les coordonnées GPS des balises `geo.position` / `ICBM` et du JSON-LD
+(`43.2328, 0.0781`) n'ont pas été modifiées : elles pointent sur le Cours
+Gambetta et restent valables pour deux numéros voisins. À affiner si la
+position exacte du showroom doit être précise au mètre.
