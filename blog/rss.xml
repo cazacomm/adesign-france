@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Flux RSS du blog ADesign.
+  Ajout d'un article : inserer un nouveau bloc <item> EN HAUT de la
+  liste et mettre a jour <lastBuildDate>. Voir /BLOG_WORKFLOW.md
+-->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
+    <link>https://adesign-france.fr/blog/</link>
+    <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
+    <language>fr-FR</language>
+    <copyright>ADesign</copyright>
+    <lastBuildDate>Thu, 14 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>https://adesign-france.fr/assets/logo-adesign.png</url>
+      <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
+      <link>https://adesign-france.fr/blog/</link>
+    </image>
+
+    <item>
+      <title>Comment choisir sa cuisine équipée à Tarbes en 2026</title>
+      <link>https://adesign-france.fr/blog/comment-choisir-sa-cuisine-equipee-a-tarbes-en-2026/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/comment-choisir-sa-cuisine-equipee-a-tarbes-en-2026/</guid>
+      <pubDate>Thu, 14 Aug 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>Implantation, matériaux, électroménager, budget et pose : le guide complet pour choisir sereinement sa cuisine équipée à Tarbes et dans les Hautes-Pyrénées.</description>
+    </item>
+
+  </channel>
+</rss>

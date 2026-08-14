@@ -1,0 +1,79 @@
+# robots.txt — adesign-france.fr
+# ADesign — cuisiniste & agenceur d'intérieur à Tarbes (65)
+
+# ── Crawlers de recherche classiques ──────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Qwantbot
+Allow: /
+
+# ── Moteurs & assistants IA (GEO / AEO) ───────────────────────
+# Autorisés : la visibilité dans les réponses génératives fait
+# partie de la stratégie d'acquisition du site.
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# ── Règle par défaut ──────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── Ressources ────────────────────────────────────────────────
+Sitemap: https://adesign-france.fr/sitemap.xml

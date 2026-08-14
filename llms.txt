@@ -1,0 +1,39 @@
+# ADesign
+
+> Cuisiniste et agenceur d'intérieur sur mesure installé à Tarbes (Hautes-Pyrénées, Occitanie). ADesign conçoit, fabrique et pose des cuisines équipées, salles de bains, dressings, bibliothèques et meubles sur mesure, et distribue luminaires, miroirs et tapis de design.
+
+Showroom : 26 Cours Gambetta, 65000 Tarbes, France.
+Contact : 07 60 45 62 86 — adesign-france@adesign-france.fr
+Zone d'intervention : Tarbes, Lourdes, Bagnères-de-Bigorre, Vic-en-Bigorre, Hautes-Pyrénées, et plus largement Pau, Auch et l'Occitanie.
+
+Activités principales :
+- Cuisines équipées et cuisines sur mesure (conception, relevé de cotes à domicile, fourniture, pose)
+- Agencement d'intérieur : salles de bains, dressings, bibliothèques, meubles TV, séjours, chambres, bureaux
+- Électroménager intégré
+- Boutique décoration : luminaires, miroirs, tapis
+
+## Pages principales
+
+- [Accueil](https://adesign-france.fr/) : présentation générale d'ADesign, prestations d'agencement et d'ameublement sur mesure à Tarbes.
+- [Cuisine](https://adesign-france.fr/cuisine.html) : l'offre cuisine équipée et sur mesure, de la conception à la pose.
+- [Prestations & services](https://adesign-france.fr/prestation-service.html) : détail des prestations d'agencement intérieur proposées.
+- [Présentation](https://adesign-france.fr/presentation.html) : l'entreprise, son approche et son showroom.
+- [Contact](https://adesign-france.fr/contact.html) : formulaire de demande de devis, coordonnées et adresse du showroom.
+
+## Boutique
+
+- [Boutique](https://adesign-france.fr/boutique.html) : sélection décoration et mobilier.
+- [Luminaires](https://adesign-france.fr/luminaire.html) : suspensions, appliques, lampadaires et lampes de table.
+- [Miroirs](https://adesign-france.fr/miroir.html) : miroirs décoratifs de designers.
+- [Tapis](https://adesign-france.fr/tapis.html) : tapis contemporains.
+
+## Blog
+
+- [Blog ADesign](https://adesign-france.fr/blog/) : conseils sur la cuisine équipée, l'agencement et l'aménagement sur mesure, ancrés sur le contexte des Hautes-Pyrénées.
+- [Comment choisir sa cuisine équipée à Tarbes en 2026](https://adesign-france.fr/blog/comment-choisir-sa-cuisine-equipee-a-tarbes-en-2026/) : guide couvrant l'analyse des usages, les configurations d'implantation, le choix des matériaux de façade et de plan de travail, l'anticipation de l'électroménager, la comparaison des devis poste par poste et les points de vigilance à la pose.
+
+## Optionnel
+
+- [Flux RSS du blog](https://adesign-france.fr/blog/rss.xml)
+- [Sitemap XML](https://adesign-france.fr/sitemap.xml)
+- [Mentions légales](https://adesign-france.fr/mentions.html)
