@@ -13,6 +13,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Qui sommes nous — ADesign</title>
+  <!-- ── SEO ajouté : canonical, geo, Open Graph, Twitter Card ── -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://adesign-france.fr/qsn.html" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <meta name="theme-color" content="#2b2325" />
+
+  <meta name="geo.region" content="FR-65" />
+  <meta name="geo.placename" content="Tarbes" />
+  <meta name="geo.position" content="43.2328;0.0781" />
+  <meta name="ICBM" content="43.2328, 0.0781" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="ADesign" />
+  <meta property="og:title" content="Qui sommes nous — ADesign" />
+  <meta property="og:description" content="ADesign — 30 ans d’expérience au service de vos projets." />
+  <meta property="og:url" content="https://adesign-france.fr/qsn.html" />
+  <meta property="og:image" content="https://adesign-france.fr/assets/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ADesign — agenceur d’intérieur à Tarbes" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Qui sommes nous — ADesign" />
+  <meta name="twitter:description" content="ADesign — 30 ans d’expérience au service de vos projets." />
+  <meta name="twitter:image" content="https://adesign-france.fr/assets/og-cover.jpg" />
+  <meta name="twitter:image:alt" content="ADesign — agenceur d’intérieur à Tarbes" />
+
   <meta name="description" content="ADesign — 30 ans d’expérience au service de vos projets." />
 
   <!-- Polices -->
@@ -286,6 +314,29 @@
       .s2-text p{text-align:left}
       .more{padding:90px 0}
     }
+  
+    /* ── Footer ADesign (classes prefixees af- : aucune collision
+          avec le CSS existant de cette page) ────────────────── */
+    .af-footer{background:#2b2325;color:#eee;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .af-footer *{box-sizing:border-box}
+    .af-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    .af-inner{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:30px;padding:44px 0}
+    .af-brand img{height:86px;width:auto;margin-bottom:12px;display:block}
+    .af-brand h4{margin:0 0 6px;font-size:26px;color:#fff}
+    .af-brand p{margin:0;color:#d7d0cc;font-weight:600}
+    .af-col h5{margin:0 0 14px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+    .af-links{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .af-links a{color:#eee;font-weight:600;text-decoration:none}
+    .af-links a:hover{opacity:.85}
+    .af-contact{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+    .af-item{display:flex;gap:14px;align-items:flex-start}
+    .af-badge{width:40px;height:40px;border-radius:6px;background:#a07957;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+    .af-badge svg{width:16px;height:16px;fill:#fff;opacity:.95}
+    .af-item a,.af-item span.af-addr{color:#fff;font-weight:600;text-decoration:none}
+    .af-bottom{background:#231c1e;padding:14px 0;font-size:12px;color:#e7e2de}
+    .af-bottom .af-wrap{display:flex;align-items:center;justify-content:center;text-align:center;gap:10px;flex-wrap:wrap}
+    .af-bottom a{color:#e7e2de;text-decoration:none}
+    @media (max-width:980px){.af-inner{grid-template-columns:1fr;gap:26px}}
   </style>
 </head>
 
@@ -477,5 +528,66 @@
       });
     }, true);
   </script>
+
+  <!-- FOOTER ADesign (ajoute : cette page n'en avait pas) -->
+  <footer class="af-footer" aria-label="Pied de page">
+    <div class="af-wrap">
+      <div class="af-inner">
+        <div class="af-brand">
+          <img src="/assets/logo-adesign.png" alt="ADesign" />
+          <h4>ADesign</h4>
+          <p>Architecture d’intérieur</p>
+        </div>
+
+        <div class="af-col">
+          <h5>| Navigation</h5>
+          <ul class="af-links">
+            <li><a href="/index.html">ACCUEIL</a></li>
+            <li><a href="/presentation.html">PRÉSENTATION</a></li>
+            <li><a href="/prestation-service.html">PRESTATION &amp; SERVICE</a></li>
+            <li><a href="/cuisine.html">CUISINE</a></li>
+            <li><a href="/contact.html">CONTACT</a></li>
+            <li><a href="/boutique.html">BOUTIQUE</a></li>
+            <li><a href="/blog/">BLOG</a></li>
+          </ul>
+        </div>
+
+        <div class="af-col">
+          <h5>| Contact</h5>
+          <ul class="af-contact">
+            <li class="af-item">
+              <span class="af-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .3 2 .5 3.1.5.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.3 22.2 1.8 13.7 1.8 3.2 1.8 2.5 2.3 2 3 2h3.6c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.1.5 3.1.1.4 0 .9-.3 1.2L6.6 10.8z"/></svg>
+              </span>
+              <div><a href="tel:+33760456286">0760456286</a></div>
+            </li>
+            <li class="af-item">
+              <span class="af-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </span>
+              <div><a href="mailto:adesign-france@adesign-france.fr">adesign-france@adesign-france.fr</a></div>
+            </li>
+            <li class="af-item">
+              <span class="af-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              </span>
+              <div><span class="af-addr">26 Cr Gambetta, 65000 Tarbes</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="af-bottom">
+      <div class="af-wrap">
+        <span>Tous droits réservés</span>
+        <span>—</span>
+        <span>Réalisée par</span>
+        <a href="https://www.cazacomm.fr" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Caza Comm</a>
+        <span>—</span>
+        <a href="/mentions.html">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
