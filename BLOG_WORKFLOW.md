@@ -267,18 +267,19 @@ articles solides et bien maillés que douze articles superficiels.
 - **`luminaire.html`** : l'image `kira.jpg` (inexistante) pointe désormais
   vers `kira.png`.
 
+- **Google Ads** : la campagne n'étant plus active, le tag `AW-18225485568`
+  a été entièrement retiré des 12 pages, avec les appels
+  `trackDevisConversion()` des formulaires de devis. Le site ne dépose donc
+  plus aucun cookie, ce qui rend le bandeau de consentement inutile.
+  **Si une campagne est relancée un jour**, le tag devra être remis *et* la
+  section « Cookies » des mentions légales réécrite : elle affirme
+  aujourd'hui l'absence totale de cookie. Un bandeau de consentement
+  deviendra alors nécessaire, les cookies publicitaires n'en étant pas
+  exemptés.
+
 ### En attente d'arbitrage
 
-1. **Bandeau de consentement aux cookies.** Le tag Google Ads
-   (`AW-18225485568`) est chargé sur les 12 pages du site et dépose des
-   cookies publicitaires. Ce type de cookie n'étant pas exempté de
-   consentement, la CNIL impose en principe un bandeau permettant de
-   l'accepter ou de le refuser **avant** tout dépôt. Les mentions légales
-   décrivent aujourd'hui le dispositif honnêtement et renvoient vers les
-   paramètres Google, mais cela ne remplace pas un recueil de consentement.
-   Deux options : installer un bandeau, ou retirer le tag des pages où il
-   n'est pas nécessaire.
-2. **Adresse.** Le siège social déclaré est au **28** Cours Gambetta, alors
+1. **Adresse.** Le siège social déclaré est au **28** Cours Gambetta, alors
    que le footer et le JSON-LD `LocalBusiness` de toutes les pages indiquent
    le **26** Cours Gambetta. Si le showroom et le siège sont à deux adresses
    distinctes, tout est cohérent ; s'il s'agit d'une coquille, il faut
