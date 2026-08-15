@@ -1,0 +1,69 @@
+name: blog-auto
+
+# Publie automatiquement un article de blog chaque lundi à 9 h UTC.
+# Le script scripts/generate-article.py fait tout le travail ; ce workflow ne
+# fait que l'exécuter puis committer le résultat.
+#
+# Codes de sortie du script :
+#   0  → un article a été généré, on committe
+#   78 → rien à faire (tous les sujets sont traités, ou l'article existe déjà),
+#        on sort en succès SANS committer
+#   1  → erreur : le job échoue, GitHub envoie un e-mail au propriétaire du dépôt
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"          # tous les lundis, 9 h UTC
+  workflow_dispatch:              # déclenchement manuel depuis l'onglet Actions
+
+concurrency:
+  group: blog-auto
+  cancel-in-progress: false
+
+permissions:
+  contents: write                 # nécessaire pour pousser le commit
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --upgrade openai
+
+      - name: Generate article
+        id: generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set +e
+          python scripts/generate-article.py
+          code=$?
+          set -e
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 78 ]; then
+            echo "::notice::Aucun nouvel article à publier cette semaine."
+            exit 0
+          fi
+          exit "$code"
+
+      - name: Commit and push
+        if: steps.generate.outputs.exit_code == '0'
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "::notice::Aucune modification à committer."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog sitemap.xml
+          git commit -m "chore(blog): article auto du $(date -u +%Y-%m-%d)"
+          git push
