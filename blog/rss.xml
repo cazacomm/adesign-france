@@ -11,13 +11,23 @@
     <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
     <language>fr-FR</language>
     <copyright>ADesign</copyright>
-    <lastBuildDate>Thu, 14 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://adesign-france.fr/assets/logo-adesign.png</url>
       <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
       <link>https://adesign-france.fr/blog/</link>
     </image>
+
+    <item>
+      <title>Îlot ou péninsule : que choisir pour votre cuisine à Tarbes ?</title>
+      <link>https://adesign-france.fr/blog/ilot-ou-peninsule-cuisine-tarbes/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/ilot-ou-peninsule-cuisine-tarbes/</guid>
+      <pubDate>Sat, 15 Aug 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>L’implantation de votre cuisine peut être déterminante. Découvrez les avantages d’un îlot ou d’une péninsule selon l’espace disponible.</description>
+    </item>
 
     <item>
       <title>Comment choisir sa cuisine équipée à Tarbes en 2026</title>
