@@ -11,13 +11,23 @@
     <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
     <language>fr-FR</language>
     <copyright>ADesign</copyright>
-    <lastBuildDate>Sat, 15 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://adesign-france.fr/assets/logo-adesign.png</url>
       <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
       <link>https://adesign-france.fr/blog/</link>
     </image>
+
+    <item>
+      <title>Cuisine ouverte sur le séjour : anticiper les détails à Tarbes</title>
+      <link>https://adesign-france.fr/blog/cuisine-ouverte-sejour-points-a-anticiper/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/cuisine-ouverte-sejour-points-a-anticiper/</guid>
+      <pubDate>Mon, 17 Aug 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>Une cuisine ouverte sur le séjour est tendance, mais elle nécessite une réflexion approfondie. Découvrez les points essentiels à anticiper pour un espace vivant et fonctionnel.</description>
+    </item>
 
     <item>
       <title>Îlot ou péninsule : que choisir pour votre cuisine à Tarbes ?</title>
