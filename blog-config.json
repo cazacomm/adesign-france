@@ -3,38 +3,52 @@
   "site_url": "https://adesign-france.fr",
   "sector": "cuisiniste et agenceur d'intérieur sur mesure",
   "location": "Tarbes, Hautes-Pyrénées",
-  "geo_keywords": ["Tarbes", "Hautes-Pyrénées", "Bigorre", "plaine de l'Adour", "Lourdes", "Bagnères", "Vic-en-Bigorre"],
+  "geo_keywords": [
+    "Tarbes",
+    "Hautes-Pyrénées",
+    "Bigorre",
+    "plaine de l'Adour",
+    "Lourdes",
+    "Bagnères-de-Bigorre",
+    "Vic-en-Bigorre",
+    "Ibos",
+    "Aureilhan",
+    "Séméac",
+    "Occitanie",
+    "65000",
+    "cuisine équipée",
+    "cuisine sur mesure",
+    "agencement intérieur",
+    "dressing sur mesure",
+    "salle de bains sur mesure",
+    "showroom Cours Gambetta"
+  ],
   "tone": "expert-conseil, factuel, chaleureux, sans jargon inutile",
   "author": "ADesign",
   "target_word_count": 1300,
   "faq_questions_count": 5,
   "language": "fr",
-
-  "_comment_technique": "Les clés ci-dessous sont utilisées par scripts/generate-article.py. Elles ne changent rien au site : elles décrivent où trouver le gabarit et quelles images existantes réutiliser.",
-
-  "openai_model": "gpt-4o-mini",
-  "openai_temperature": 0.7,
-  "reference_article": "blog/comment-choisir-sa-cuisine-equipee-a-tarbes-en-2026/index.html",
-  "workflow_doc": "BLOG_WORKFLOW.md",
-  "email": "adesign-france@adesign-france.fr",
-  "max_cards_on_blog_index": 6,
-
-  "default_image": {
-    "src": "/assets/cuisine-1.jpg",
-    "alt": "Cuisine équipée sur mesure réalisée par ADesign à Tarbes, Hautes-Pyrénées"
-  },
-  "topic_images": {
-    "1": { "src": "/assets/cuisine-2.jpg", "alt": "Cuisine avec îlot central réalisée par ADesign à Tarbes" },
-    "2": { "src": "/assets/sejour-1.jpg", "alt": "Cuisine ouverte sur le séjour aménagée par ADesign en Hautes-Pyrénées" },
-    "3": { "src": "/assets/idee-cuisine.jpg", "alt": "Plan de travail de cuisine sur mesure réalisé par ADesign à Tarbes" },
-    "4": { "src": "/assets/cuisine-1.jpg", "alt": "Cuisine rénovée dans une maison de ville tarbaise par ADesign" },
-    "5": { "src": "/assets/sejour-2.jpg", "alt": "Éclairage de cuisine et de séjour conçu par ADesign à Tarbes" },
-    "6": { "src": "/assets/cuisine-2.jpg", "alt": "Tiroirs et rangements de cuisine sur mesure signés ADesign" },
-    "7": { "src": "/assets/idee-cuisine.jpg", "alt": "Petite cuisine optimisée sur mesure par ADesign à Tarbes" },
-    "8": { "src": "/assets/projet.jpg", "alt": "Étude et devis de cuisine préparés par ADesign à Tarbes" },
-    "9": { "src": "/assets/dressings-1.jpg", "alt": "Dressing sur mesure réalisé par ADesign en Hautes-Pyrénées" },
-    "10": { "src": "/assets/sbd-1.jpg", "alt": "Salle de bains sur mesure aménagée par ADesign en Hautes-Pyrénées" },
-    "11": { "src": "/assets/cuisine-1.jpg", "alt": "Électroménager encastré dans une cuisine ADesign à Tarbes" },
-    "12": { "src": "/assets/equipe.jpg", "alt": "Showroom ADesign du Cours Gambetta à Tarbes" }
-  }
+  "model": "gpt-4o",
+  "temperature": 0.7,
+  "topic_marker_prefix": "adesign-topic",
+  "og_image": "/assets/cuisine-1.jpg",
+  "logo_path": "/assets/logo-adesign.png",
+  "default_article_section": "Cuisine",
+  "internal_link_targets": [
+    "/cuisine.html",
+    "/prestation-service.html",
+    "/contact.html"
+  ],
+  "reference_article_slug": "comment-choisir-sa-cuisine-equipee-a-tarbes-en-2026",
+  "facts": [
+    "Showroom ADesign : 28 Cours Gambetta, 65000 Tarbes (Hautes-Pyrénées, Occitanie).",
+    "Téléphone : 07 60 45 62 86. E-mail : adesign-france@adesign-france.fr. Équipe joignable du lundi au samedi.",
+    "Prestations : cuisines équipées et sur mesure, salles de bains, dressings, bibliothèques, meubles TV, séjours, chambres, bureaux, tables sur mesure, électroménager intégré.",
+    "Boutique décoration : luminaires, miroirs et tapis de designers.",
+    "Chaque projet démarre par un échange sur les usages, puis par un relevé de cotes au domicile du client. ADesign assure la conception, la fourniture et la pose.",
+    "Plus de 30 ans d'expérience en agencement et ameublement sur mesure.",
+    "Marques partenaires citées sur le site : Dibiesse, Pando, Tomasella.",
+    "Zone d'intervention : Tarbes, Lourdes, Bagnères-de-Bigorre, Vic-en-Bigorre et les Hautes-Pyrénées, plus largement Pau, Auch et l'Occitanie.",
+    "Le devis est gratuit. Aucun prix, tarif ou fourchette budgétaire ne doit être cité."
+  ]
 }

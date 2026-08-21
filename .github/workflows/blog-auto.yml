@@ -1,62 +1,86 @@
-name: blog-auto
+name: Blog auto — ADesign
 
-# Publie automatiquement un article de blog chaque lundi à 9 h UTC.
-# Le script scripts/generate-article.py fait tout le travail ; ce workflow ne
-# fait que l'exécuter puis committer le résultat.
+# Publie automatiquement un article de blog chaque lundi.
+# Tout le travail est fait par scripts/generate-article.py ; ce workflow ne
+# fait que l'exécuter, puis committer et pousser le résultat.
 #
 # Codes de sortie du script :
 #   0  → un article a été généré, on committe
 #   78 → rien à faire (tous les sujets sont traités, ou l'article existe déjà),
 #        on sort en succès SANS committer
-#   1  → erreur : le job échoue, GitHub envoie un e-mail au propriétaire du dépôt
+#   1  → erreur : le job échoue, GitHub notifie le propriétaire du dépôt
 
 on:
   schedule:
-    - cron: "0 9 * * 1"          # tous les lundis, 9 h UTC
-  workflow_dispatch:              # déclenchement manuel depuis l'onglet Actions
+    # Tous les lundis à 9h00 UTC (11h en heure d'été française, 10h en hiver).
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Simulation : génère l'article mais n'écrit et ne pousse rien"
+        type: boolean
+        default: false
+      rewrite:
+        description: "Slug d'un article existant à régénérer (laisser vide pour publier le sujet suivant)"
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: write
 
 concurrency:
   group: blog-auto
   cancel-in-progress: false
 
-permissions:
-  contents: write                 # nécessaire pour pousser le commit
-
 jobs:
-  publish:
+  generate:
+    name: Génération et publication d'un article
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install --upgrade openai
+      - name: Installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai
 
-      - name: Generate article
+      - name: Génération de l'article
         id: generate
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           set +e
-          python scripts/generate-article.py
+          args=""
+          if [ -n "${{ inputs.rewrite }}" ]; then
+            args="--rewrite ${{ inputs.rewrite }}"
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python scripts/generate-article.py --dry-run $args
+          else
+            python scripts/generate-article.py $args
+          fi
           code=$?
           set -e
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          if [ "$code" -eq 78 ]; then
-            echo "::notice::Aucun nouvel article à publier cette semaine."
-            exit 0
-          fi
-          exit "$code"
+          case $code in
+            0)  echo "Article généré." ;;
+            78) echo "::notice::Aucun nouveau sujet à traiter — arrêt propre." ;;
+            *)  echo "::error::Échec de la génération (code $code)." ; exit $code ;;
+          esac
 
-      - name: Commit and push
-        if: steps.generate.outputs.exit_code == '0'
+      - name: Commit et push
+        if: steps.generate.outputs.exit_code == '0' && inputs.dry_run != true
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "::notice::Aucune modification à committer."
@@ -64,6 +88,25 @@ jobs:
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog sitemap.xml
-          git commit -m "chore(blog): article auto du $(date -u +%Y-%m-%d)"
-          git push
+          git add -A
+          if [ -n "${{ inputs.rewrite }}" ]; then
+            msg="chore(blog): reecriture de ${{ inputs.rewrite }}"
+          else
+            msg="chore(blog): article auto du $(date -u +%Y-%m-%d)"
+          fi
+          git commit -m "$msg"
+          git push origin HEAD:${GITHUB_REF_NAME}
+          echo "::notice::Article publié et poussé."
+
+      - name: Récapitulatif
+        if: always()
+        run: |
+          {
+            echo "### Blog auto — ADesign"
+            echo ""
+            echo "- Code de sortie du script : \`${{ steps.generate.outputs.exit_code }}\`"
+            echo "- Simulation : \`${{ inputs.dry_run || 'false' }}\`"
+            echo "- Réécriture : \`${{ inputs.rewrite || '(aucune)' }}\`"
+            echo ""
+            echo "Codes : \`0\` succès · \`78\` aucun sujet restant · \`1\` erreur."
+          } >> "$GITHUB_STEP_SUMMARY"
