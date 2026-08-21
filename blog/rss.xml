@@ -11,13 +11,23 @@
     <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
     <language>fr-FR</language>
     <copyright>ADesign</copyright>
-    <lastBuildDate>Mon, 17 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://adesign-france.fr/assets/logo-adesign.png</url>
       <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
       <link>https://adesign-france.fr/blog/</link>
     </image>
+
+    <item>
+      <title>Quel plan de travail pour votre cuisine ?</title>
+      <link>https://adesign-france.fr/blog/quel-plan-travail-choisir-stratifie-composite-ceramique/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/quel-plan-travail-choisir-stratifie-composite-ceramique/</guid>
+      <pubDate>Fri, 21 Aug 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>À Tarbes et dans la plaine de l'Adour, choisir le bon plan de travail pour votre cuisine sur mesure est essentiel. Que vous optiez pour un style moderne ou classique, chaque matériau a ses avantages. Découvrez notre comparatif détaillé des plans de travail en stratifié, composite, céramique et bois pour vous aider dans votre choix.</description>
+    </item>
 
     <item>
       <title>Cuisine ouverte sur le séjour : anticiper les détails à Tarbes</title>
