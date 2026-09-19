@@ -4,6 +4,12 @@ name: Blog auto — ADesign
 # Tout le travail est fait par scripts/generate-article.py ; ce workflow ne
 # fait que l'exécuter, puis committer et pousser le résultat.
 #
+# Avant la rédaction, une passe --topics-only regarnit la réserve de sujets de
+# BLOG_WORKFLOW.md si elle est trop basse, et pousse ce commit séparément : le
+# blog ne peut donc plus s'arrêter faute de sujets, et un échec de l'article ne
+# fait pas perdre les sujets déjà générés. Un échec du réapprovisionnement est
+# un simple avertissement — il ne bloque jamais la publication.
+#
 # Codes de sortie du script :
 #   0  → un article a été généré, on committe
 #   78 → rien à faire (tous les sujets sont traités, ou l'article existe déjà),
@@ -55,6 +61,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install openai
 
+      - name: Identité git
+        # Configurée AVANT le réapprovisionnement : c'est le script lui-même qui
+        # committe les nouveaux sujets, il lui faut une identité valide.
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Réapprovisionnement des sujets
+        id: topics
+        if: inputs.dry_run != true && inputs.rewrite == ''
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set +e
+          python scripts/generate-article.py --topics-only
+          code=$?
+          set -e
+          if [ $code -ne 0 ]; then
+            echo "::warning::Réapprovisionnement des sujets échoué (code $code) — on continue avec la réserve existante."
+          fi
+
+      - name: Push des nouveaux sujets
+        # Poussé AVANT la rédaction : si l'article échoue ensuite, les sujets
+        # déjà générés sont déjà sur le remote et ne sont jamais perdus.
+        if: inputs.dry_run != true && inputs.rewrite == ''
+        run: |
+          git fetch origin "${GITHUB_REF_NAME}" --quiet || true
+          if [ -n "$(git log --oneline "origin/${GITHUB_REF_NAME}..HEAD" 2>/dev/null)" ]; then
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+            echo "::notice::Nouveaux sujets poussés."
+          else
+            echo "::notice::Aucun nouveau sujet à pousser."
+          fi
+
       - name: Génération de l'article
         id: generate
         env:
@@ -86,8 +126,6 @@ jobs:
             echo "::notice::Aucune modification à committer."
             exit 0
           fi
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if [ -n "${{ inputs.rewrite }}" ]; then
             msg="chore(blog): reecriture de ${{ inputs.rewrite }}"

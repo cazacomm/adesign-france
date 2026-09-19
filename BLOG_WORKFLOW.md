@@ -231,9 +231,13 @@ Ces règles protègent la crédibilité du site et évitent tout risque juridiqu
 
 ---
 
-## 7. Sujets suggérés — 12 prochaines semaines
+## 7. Sujets suggérés
 
 Tous ancrés cuisine / agencement / Tarbes, sans besoin de données chiffrées.
+
+Ce tableau se remplit tout seul : quand il reste moins de 8 sujets non traités,
+`generate-article.py` en fait générer 40 de plus et les ajoute à la suite, dans
+ce format exact. Les lignes ajoutées à la main restent évidemment possibles.
 
 | # | Sujet | Angle |
 |---|---|---|

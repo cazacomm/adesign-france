@@ -78,6 +78,72 @@ marqueur, mais son slug protège le sujet correspondant.
 
 ---
 
+## Réserve de sujets : le blog se réapprovisionne seul
+
+Avant la mise en place de ce mécanisme, le script sortait en **78** dès que
+tous les sujets de `BLOG_WORKFLOW.md` étaient traités : le blog s'arrêtait
+silencieusement jusqu'à ce que quelqu'un vienne rallonger le tableau à la main.
+
+Désormais, **quand la réserve de sujets non traités passe sous 8**, le script
+en fait générer **40** de plus, les ajoute à la fin du tableau et les committe.
+
+| Réglage | Valeur |
+|---|---|
+| `TOPIC_RESERVE_MIN` | **8** sujets non traités |
+| `TOPIC_BATCH` | **40** sujets par lot |
+| `TOPIC_MAX_CALLS` | **2** appels maximum pour constituer un lot |
+| `TOPICS_MODEL` | `gpt-4o`, indépendant du modèle de rédaction |
+
+### Une seule définition de « sujet non traité »
+
+`topic_is_pending()` porte ce critère, et `pending_topics()` comme
+`pick_topic()` s'appuient dessus. C'est volontaire : deux définitions séparées
+finiraient par diverger, et le script pourrait croire sa réserve pleine tout en
+n'ayant plus rien à publier — exactement le scénario que ce mécanisme corrige.
+
+### Déduplication sur le slug, jamais sur le titre
+
+Le slug est la clé d'idempotence du pipeline : nom de dossier, URL, verrou de
+`pick_topic()`. Deux titres différents qui produisent le même slug sont un
+doublon, et c'est ce cas-là qui casse la publication. Dédupliquer sur le titre
+le laisserait passer ; `dedupe_topics()` déduplique donc sur `slugify(titre)`,
+contre les slugs déjà en ligne **et** ceux déjà listés dans le tableau.
+
+### Le format du tableau est copié, pas imposé
+
+`append_topics_to_workflow()` relit la dernière ligne du tableau et en reprend
+le nombre de colonnes, ainsi que la colonne de slug explicite si le fichier en
+déclare une. ADesign n'en déclare pas : les lignes ajoutées sont donc des
+`| # | Sujet | Angle |`, strictement comme les douze d'origine.
+
+Détail qui a son importance : les regex de détection de ligne se terminent par
+`[ \t]*$` et **jamais** par `\s*$`. `\s` avale le retour à la ligne, la ligne
+suivante serait recollée à la précédente et le tableau markdown cassé.
+
+### Accent éditorial
+
+Le prompt impose **80 % de sujets cuisine / cuisiniste** (types de cuisines,
+matériaux, plans de travail, agencement, électroménager, îlot, rangement,
+entretien, budget — méthode seulement —, tendances) et **20 % d'agencement
+connexe** (dressing, salle de bains, meuble sur mesure). Les garde-fous de
+contenu sont les mêmes que pour les articles : aucun prix, aucune norme, aucun
+dispositif d'aide.
+
+### Le commit des sujets est séparé — et poussé en premier
+
+Dans le workflow, le réapprovisionnement tourne **avant** la rédaction, dans
+son propre appel `--topics-only`, et son commit est poussé immédiatement. Si
+l'article échoue ensuite, les sujets déjà générés sont sur le remote : ils ne
+sont jamais perdus.
+
+Symétriquement, **un échec du réapprovisionnement ne bloque jamais la
+publication**. En mode article l'exception est journalisée en avertissement et
+la rédaction continue avec la réserve existante ; l'étape GitHub Actions
+correspondante émet un `::warning::` et le job poursuit. Ce n'est qu'en
+`--topics-only` que l'erreur remonte et fait échouer le run.
+
+---
+
 ## Volume et rattrapage
 
 | Réglage | Valeur |
@@ -147,7 +213,17 @@ python3 scripts/generate-article.py
 
 # Régénération d'un article existant (écrase le fichier)
 python3 scripts/generate-article.py --rewrite mon-slug-existant
+
+# Réapprovisionnement seul : génère, ajoute et committe les sujets,
+# sans écrire d'article. Ne fait rien si la réserve est encore suffisante.
+python3 scripts/generate-article.py --topics-only
+
+# Le même, sans appel API ni commit — pour vérifier le format du tableau
+python3 scripts/generate-article.py --topics-only --mock --dry-run
 ```
+
+`--topics-only` et `--rewrite` sont **incompatibles** : le premier ne génère
+aucun article, le second en réécrit un. La combinaison sort en erreur.
 
 `--mock` et `--dry-run` se combinent : c'est le moyen de vérifier l'assemblage
 après une modification du gabarit, sans dépenser un centime.
@@ -166,6 +242,10 @@ Un échec ne laisse jamais le dépôt à moitié modifié.
 ---
 
 ## Déclenchement manuel du workflow
+
+Le job enchaîne : identité git → **réapprovisionnement** (`--topics-only`) →
+**push des sujets** → génération de l'article → commit et push de l'article.
+Les deux étapes du milieu sont sautées en `dry_run` et en `rewrite`.
 
 Onglet **Actions** → *Blog auto — ADesign* → **Run workflow**. Deux champs :
 
@@ -209,5 +289,7 @@ Ajouter une ligne au tableau de la section « Sujets suggérés » de
 | 13 | Titre de l'article | Angle éditorial en quelques mots |
 ```
 
-Le script prend les sujets dans l'ordre des numéros et s'arrête proprement
-(code 78) quand la liste est épuisée.
+Le script prend les sujets dans l'ordre des numéros. Il n'est plus nécessaire
+d'alimenter ce tableau à la main : sous 8 sujets non traités, il en génère 40
+de plus tout seul. Le code 78 « aucun sujet restant » ne se produit donc plus
+qu'en cas d'échec du réapprovisionnement.
