@@ -11,13 +11,23 @@
     <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
     <language>fr-FR</language>
     <copyright>ADesign</copyright>
-    <lastBuildDate>Mon, 28 Sep 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://adesign-france.fr/assets/logo-adesign.png</url>
       <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
       <link>https://adesign-france.fr/blog/</link>
     </image>
+
+    <item>
+      <title>Votre dressing sur mesure de A à Z</title>
+      <link>https://adesign-france.fr/blog/dressing-mesure-prise-cotes-pose/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/dressing-mesure-prise-cotes-pose/</guid>
+      <pubDate>Mon, 12 Oct 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>Vous rêvez d'un espace de rangement parfaitement adapté à vos besoins ? À Tarbes, dans les Hautes-Pyrénées, ADesign vous accompagne dans la réalisation de votre dressing sur mesure. De la prise de cotes à l'installation, chaque étape est pensée pour répondre à vos attentes tout en optimisant votre espace intérieur. Découvrez comment nous transformons vos idées en réalité.</description>
+    </item>
 
     <item>
       <title>Comprendre et comparer un devis de cuisine</title>
