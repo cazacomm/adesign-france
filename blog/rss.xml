@@ -11,13 +11,23 @@
     <description>Conseils d'expert sur la cuisine équipée, l'agencement et l'aménagement sur mesure à Tarbes et dans les Hautes-Pyrénées.</description>
     <language>fr-FR</language>
     <copyright>ADesign</copyright>
-    <lastBuildDate>Mon, 12 Oct 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://adesign-france.fr/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://adesign-france.fr/assets/logo-adesign.png</url>
       <title>Blog ADesign — Cuisine &amp; agencement à Tarbes</title>
       <link>https://adesign-france.fr/blog/</link>
     </image>
+
+    <item>
+      <title>Créez votre salle de bains sur mesure</title>
+      <link>https://adesign-france.fr/blog/salle-bains-mesure-hautes-pyrenees-commencer/</link>
+      <guid isPermaLink="true">https://adesign-france.fr/blog/salle-bains-mesure-hautes-pyrenees-commencer/</guid>
+      <pubDate>Mon, 19 Oct 2026 09:00:00 +0200</pubDate>
+      <author>adesign-france@adesign-france.fr (ADesign)</author>
+      <category>Cuisine</category>
+      <description>Vous rêvez d'une salle de bains qui allie fonctionnalité et esthétique en Hautes-Pyrénées ? ADesign, spécialiste de l'agencement sur mesure, vous accompagne dans la création de votre espace idéal. Que vous soyez à Tarbes, Lourdes ou Bagnères-de-Bigorre, découvrez comment nos experts transforment vos idées en réalité.</description>
+    </item>
 
     <item>
       <title>Votre dressing sur mesure de A à Z</title>
